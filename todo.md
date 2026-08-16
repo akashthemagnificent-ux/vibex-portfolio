@@ -34,3 +34,10 @@
 - [x] Keep a sparse, tactile glow treatment while removing generic dark-purple-gradient cues.
 - [x] Rebalance panels, typography, proof artifact, navigation, and interactive states for the new material language.
 - [x] Verify the revised atmosphere on desktop and mobile and confirm a passing production build.
+
+## Aurora Sky Layer
+
+- [x] Add the requested React Bits Aurora JS/CSS component to the project.
+- [x] Integrate Aurora as a non-interactive atmospheric sky layer without compromising navigation, loading, or content readability.
+- [x] Tune the component’s color and movement to the muted liminal-terminal palette rather than a default neon treatment.
+- [x] Verify desktop and mobile behavior and a successful production build.

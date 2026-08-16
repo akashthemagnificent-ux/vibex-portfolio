@@ -5,6 +5,7 @@
  */
 import { ArrowDown, ArrowUpRight, CornerDownRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import Aurora from "@/components/Aurora";
 import BoxLoader from "@/components/ui/box-loader";
 
 const navigation = [
@@ -131,6 +132,14 @@ export default function Home() {
       </header>
 
       <section className="proof-hero" id="index" data-scene aria-labelledby="proof-title">
+        <div className="proof-aurora" aria-hidden="true">
+          <Aurora
+            colorStops={["#1d241d", "#9bae9f", "#d8c19a"]}
+            amplitude={0.42}
+            blend={0.56}
+            speed={0.18}
+          />
+        </div>
         <div className="proof-hero__copy">
           <p className="proof-caption proof-hero__caption motion-clip motion-clip--1">
             A personal identity, in active revision.
