@@ -1,83 +1,75 @@
-# VIBEX — Immersive 3D WebGL Redesign
+# Vibex Base Website — Visual Direction
 
-## Three Directions
+## Three Possible Aesthetic Approaches
 
-### 1. The Memory Observatory
-**Very Brief Intro:** A midnight 3D observatory where Ash’s origin, edits, AI work, and future appear as glowing physical artefacts in a navigable room. It turns biography into discovery rather than a scrolling résumé.
+| Theme Name | Very Brief Intro | Probability |
+| --- | --- | ---: |
+| Quiet Precision | An ivory, almost gallery-like interface built from confident black typography, thin rules, restrained pills, and large calm spaces. It feels luxurious because nothing competes for attention. | 0.07 |
+| Film Negative | A nocturnal, editorial system using soft grain, silver typography, and oversized portrait-scale crop windows. It is intimate, visual, and slightly enigmatic. | 0.04 |
+| Soft Machinery | A warm-white technical atelier: precise module frames, subtle chromatic offsets, and tactile UI pieces that feel made rather than rendered. | 0.09 |
 
-**Probability:** 0.036
-
-### 2. The Creative Transmission
-**Very Brief Intro:** A deep-space signal catches fragments of Ash’s work as orbiting data, translucent screens, and neural particles. It is high-energy, but its spatial metaphor risks becoming too abstract for a personal introduction.
-
-**Probability:** 0.072
-
-### 3. The Infinite Workbench
-**Very Brief Intro:** An intimate three-dimensional studio desk in the dark, where each tool opens a chapter of the story. It is tactile and personal, but less aligned to the expansiveness of Ash’s ambition.
-
-**Probability:** 0.019
-
----
-
-## Chosen Approach — The Memory Observatory
+## Chosen Direction — Quiet Precision
 
 ### Design Movement
 
-**Interactive digital scenography with cinematic dream-logic.** This is not a two-dimensional landing page with a 3D prop. The entire experience is a WebGL environment: a camera moves through a dark observatory, physical artefacts react to cursor and scroll, and HTML narrative captions sit on top of the world only when they clarify the journey.
+**Contemporary Swiss editorial minimalism** with the calm, high-trust product precision of the supplied Minds reference. The Vibex interpretation is original: it uses an ownable four-pointed star/asterisk mark and deliberately measured motion rather than reproducing the reference’s branding, content, or components.
 
 ### Core Principles
 
-1. **The story exists as matter.** The 2020 origin is a suspended glass editing panel; 116 edits are a shard cloud; Nebula is a neural core; the Discord client is a floating terminal module; the future is a portal.
-2. **Ash is the centre without exposing private identity.** A custom translucent “V” star-mark, not a face or an avatar, acts as the personal guide through the world.
-3. **The camera is part of the storytelling.** Scroll moves the visitor between landmarks, while cursor movement creates immediate depth, parallax, and object response.
-4. **No flat portfolio UI.** Labels are minimal overlays, objects carry the visual weight, and content unlocks as the visitor reaches it.
+The foundation uses spacious asymmetric composition, strong typographic contrast, one clear action per moment, and finely engineered boundaries. Black is used as ink, not as a heavy background; whitespace is an active visual material. Motion should clarify hierarchy rather than perform for attention.
 
 ### Color Philosophy
 
-The world is a nearly black navy void so light has substance. Electric cobalt represents Ash’s restless creative current, moon-white gives the artefacts an emotional glow, and a small violet frequency appears only in Nebula and the future portal. There is no chartreuse and no audio: visual energy comes from depth, bloom-like light, movement, and reflection.
+The primary canvas is **luminous bone** (`#F5F2EA`), with **ink black** (`#101010`) for type and controls. A single **Vibex Cobalt** (`#2853D6`) appears only as a living signal in the wordmark dot, active navigation state, and selected interface moments. The palette feels luxurious because color is disciplined.
 
-### Spatial Paradigm
+### Layout Paradigm
 
-The site is a **five-stop camera journey** through one continuous world. The camera begins at the Vibex star-mark, moves through the Origin Screen, passes the Edit Archive, enters the Nebula Core, and finishes at the Future Portal. Each stop is a real 3D landmark with a brief narrative overlay and an interaction target.
+The page behaves like an **editorial canvas**, not a centered landing-page stack. A hairline header floats above an expansive hero. The headline occupies the lower-left optical field, while a narrow vertical rule and side notation balance the right edge. Sections enter as slide-like editorial panels with different crops and alignments.
 
 ### Signature Elements
 
-1. **Vibex star-mark:** a unique segmented glass “V” sculpture that turns toward the cursor and anchors the world.
-2. **Memory path:** a physical constellation line that visibly connects all landmarks in 3D.
-3. **Artifact halos:** slow-moving rings, shards, and refractive planes that make every chapter feel like a space the visitor entered.
+The brand mark is a compact four-lobed Vibex asterisk. Pill navigation uses hairline borders and an inset active capsule. A slim vertical rule beside key copy acts as a recurring editorial cursor. Each motion sequence resolves into a quiet, perfectly static layout.
 
 ### Interaction Philosophy
 
-Visitors explore, rather than merely read. The camera glides with scroll; cursor movement tilts the environment; hovering over an artefact brings it forward and shows a short invitation; clicking an artefact opens a focused information pane. An optional “Explore landmarks” rail offers touch-accessible navigation without reducing the world to a menu.
+Interactions are quiet but unmistakable: pills press inward, active items glide within their own track, and links reveal a short cobalt underscore. No ornamental 3D, ambient audio, glows, or fake depth appear in the base layer.
 
 ### Animation
 
-Use a continuous low-speed WebGL loop with spring-like object easing. The camera transitions use a long but responsive cubic motion curve; every object has a subtle idle state that increases slightly on focus/hover. Reduced-motion users see the same artefacts in a stable staged composition with immediate camera jumps.
+The hero copy enters in two deliberate stages: an opacity-and-translate reveal, then a single word-level emphasis shift. Slide panels use horizontal clip reveals and a 60ms stagger between related elements. Hover actions remain under 180ms and use a firm custom ease-out. All nonessential motion is disabled with `prefers-reduced-motion`.
 
 ### Typography System
 
-**Manrope** carries short human captions and actions. **DM Mono** carries coordinates, object names, and technical cues. **Bodoni Moda** appears only in the large story statements, floating over the scene like a film title. Typography never replaces the 3D world; it annotates it.
+**Manrope** forms the functional sans layer: wordmark, navigation, metadata, and controls. **DM Sans** carries large display text with very tight tracking and high contrast through scale and weight—not through decorative italics. **DM Mono** is reserved for tiny system notation, section indices, and cursor-like captions.
 
 ### Brand Essence
 
-**Vibex is Ash’s private observatory of public work: a living three-dimensional record of a teenage creator building beyond one medium.**
+**Vibex is Ash’s private creative signal—an evolving place for the person, process, and experiments behind the name.**
 
-**Personality:** imaginative, restless, self-made.
+Personality: **self-possessed, curious, precise**.
 
 ### Brand Voice
 
-The voice is personal, assured, and exploratory. Captions name the object first, then reveal why it matters. Example lines: “This is where I stopped copying the light.” and “Nebula is not finished. Neither am I.”
+Headlines are concise and certain. Supporting copy is direct, calm, and lightly personal; it does not sound like a corporate product page.
 
-### Wordmark & Logo
+> “People know the name. Few know what it took to make it mean something.”
 
-The logo is a custom **Vibex Star-Mark**: three translucent crystal arms form an open “V” around a bright core. It works as an icon, a navigational beacon, and the first object in the 3D world.
+> “Open the record.”
+
+### Wordmark and Logo
+
+The wordmark is **VIBEX** in a spaced Manrope medium weight paired with the custom four-pointed star-mark. It never relies on a default word-only logo. The star mark sits at a clearly visible scale in the header and hero.
 
 ### Signature Brand Color
 
-**Vibex Cobalt — #5B7CFF.** A saturated blue-white light used as the world’s guiding energy, never as a flat background.
+**Vibex Cobalt — `#2853D6`.**
+
+## First-Frame Choreography
+
+The initial viewport is a bone-colored canvas. Top left holds the VIBEX star-mark; top center holds a rounded navigation rail; top right holds a pair of minimal utility actions. The title appears low on the left: “People know the name. / Almost nobody knows the person behind it.” A cobalt mark or typographic cursor supplies the only color. The page begins with a quiet rise rather than an intro overlay.
 
 ## Style Decisions
 
-- Every major chapter must have a visible 3D object or environment feature; copy alone never carries a section.
-- Audio, narration, sound effects, audio controls, and audio-related prompts are removed completely.
-- The 3D scene stays the focal point on desktop and remains an interactive, touch-friendly landmark world on mobile.
+- Cobalt appears as a single deliberate signal within each major viewport, never as a broad decorative fill.
+- Dark material is reserved for one concise editorial negative-space interlude; luminous bone remains the primary canvas.
+- Card-like content must be disrupted by the editorial system: uneven offsets, rule-led alignment, sectional notation, and the Vibex mark language.
