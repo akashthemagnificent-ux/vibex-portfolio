@@ -1,9 +1,37 @@
 /** Ash / Vibex — privacy-respecting personal record. */
 import { ArrowDown, ArrowUpRight, CornerDownRight } from "lucide-react";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Component, lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import Aurora from "@/components/Aurora";
-import FloatingLines from "@/components/FloatingLines";
+import HeroTypographyScene from "@/components/HeroTypographyScene";
 import BoxLoader from "@/components/ui/box-loader";
+
+const FloatingLines = lazy(() => import("@/components/FloatingLines"));
+
+type ExtendedNavigator = Navigator & {
+  deviceMemory?: number;
+  connection?: { effectiveType?: string; saveData?: boolean };
+};
+
+function shouldEnableAmbientWebGL() {
+  if (typeof window === "undefined") return false;
+  const navigatorInfo = navigator as ExtendedNavigator;
+  const compactOrTouch = window.matchMedia("(max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce)").matches;
+  const constrainedConnection = navigatorInfo.connection?.saveData || ["slow-2g", "2g", "3g"].includes(navigatorInfo.connection?.effectiveType ?? "");
+  const limitedHardware = (navigatorInfo.deviceMemory ?? 8) < 4 || (navigatorInfo.hardwareConcurrency ?? 8) < 4;
+  return !compactOrTouch && !constrainedConnection && !limitedHardware;
+}
+
+class AmbientWebGLBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    return this.state.hasError ? null : this.props.children;
+  }
+}
 
 const navigation = [
   { label: "Index", target: "index" },
@@ -90,9 +118,9 @@ function ExternalLink({ href, children, className = "" }: { href: string; childr
 }
 
 export default function Home() {
-  const artifactRef = useRef<HTMLAnchorElement>(null);
   const [activeScene, setActiveScene] = useState("index");
   const [entryState, setEntryState] = useState<"loading" | "leaving" | "done">("loading");
+  const [renderAmbientWebGL, setRenderAmbientWebGL] = useState(false);
 
   useEffect(() => {
     const startedAt = performance.now();
@@ -112,6 +140,14 @@ export default function Home() {
   }, [entryState]);
 
   useEffect(() => {
+    const updateAmbientTier = () => setRenderAmbientWebGL(shouldEnableAmbientWebGL());
+    updateAmbientTier();
+    const mediaQuery = window.matchMedia("(max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce)");
+    mediaQuery.addEventListener("change", updateAmbientTier);
+    return () => mediaQuery.removeEventListener("change", updateAmbientTier);
+  }, []);
+
+  useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-scene]"));
     const observer = new IntersectionObserver((entries) => {
       const primary = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -119,27 +155,6 @@ export default function Home() {
     }, { threshold: [0.25, 0.55, 0.8] });
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const artifact = artifactRef.current;
-    if (!artifact || window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)").matches) return;
-    const handlePointerMove = (event: PointerEvent) => {
-      const bounds = artifact.getBoundingClientRect();
-      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-      artifact.style.setProperty("--tilt-x", `${(-y * 4).toFixed(2)}deg`);
-      artifact.style.setProperty("--tilt-y", `${(x * 5).toFixed(2)}deg`);
-      artifact.style.setProperty("--shift-x", `${(x * 9).toFixed(1)}px`);
-      artifact.style.setProperty("--shift-y", `${(y * 9).toFixed(1)}px`);
-    };
-    const reset = () => {
-      artifact.style.setProperty("--tilt-x", "0deg"); artifact.style.setProperty("--tilt-y", "0deg");
-      artifact.style.setProperty("--shift-x", "0px"); artifact.style.setProperty("--shift-y", "0px");
-    };
-    artifact.addEventListener("pointermove", handlePointerMove);
-    artifact.addEventListener("pointerleave", reset);
-    return () => { artifact.removeEventListener("pointermove", handlePointerMove); artifact.removeEventListener("pointerleave", reset); };
   }, []);
 
   return (
@@ -160,10 +175,7 @@ export default function Home() {
           <h1 id="proof-title" className="proof-title"><span className="motion-clip motion-clip--2">People know the name.</span><span className="motion-clip motion-clip--3">Almost nobody knows the <em>person.</em></span></h1>
           <div className="proof-hero__foot motion-clip motion-clip--4"><p>Editing, software, AI systems, and anything that makes room for a new idea.</p><a className="quiet-link" href="#statement"><span>Begin the record</span><ArrowDown size={17} strokeWidth={1.5} /></a></div>
         </div>
-        <a className="proof-artifact motion-clip motion-clip--2" href="#statement" ref={artifactRef} aria-label="Read Ash's introduction">
-          <img src="/manus-storage/vibex-cobalt-proof-sheet_07e6f1c8.png" alt="A folded dark proof sheet with a cut-out Vibex star" fetchPriority="high" />
-          <span className="proof-artifact__fold" aria-hidden="true" /><span className="proof-artifact__sticker" aria-hidden="true"><VibexStar /><small>001</small></span><span className="proof-artifact__label" aria-hidden="true">Identity fragment / 001</span>
-        </a>
+        <HeroTypographyScene />
         <div className="proof-hero__edge" aria-hidden="true"><span>Vibex / personal record</span><span>2026</span></div>
       </section>
 
@@ -198,7 +210,9 @@ export default function Home() {
       </section>
 
       <section className="proof-signal" id="signal" data-scene aria-labelledby="signal-title">
-        <div className="proof-floating-lines" aria-hidden="true"><FloatingLines linesGradient={["#324035", "#9bae9f", "#d8c19a"]} enabledWaves={["middle", "bottom"]} lineCount={[3, 4]} lineDistance={[13, 19]} middleWavePosition={{ x: 2.7, y: 0.06, rotate: 0.12 }} bottomWavePosition={{ x: 1.5, y: -0.5, rotate: 0.24 }} animationSpeed={0.18} interactive={false} parallax={false} mixBlendMode="screen" /></div>
+        <div className="proof-floating-lines" aria-hidden="true">
+          {renderAmbientWebGL ? <AmbientWebGLBoundary><Suspense fallback={null}><FloatingLines linesGradient={["#324035", "#9bae9f", "#d8c19a"]} enabledWaves={["middle", "bottom"]} lineCount={[3, 4]} lineDistance={[13, 19]} middleWavePosition={{ x: 2.7, y: 0.06, rotate: 0.12 }} bottomWavePosition={{ x: 1.5, y: -0.5, rotate: 0.24 }} animationSpeed={0.18} interactive={false} parallax={false} mixBlendMode="screen" /></Suspense></AmbientWebGLBoundary> : null}
+        </div>
         <div className="proof-signal__mark"><VibexStar /></div><p className="proof-caption proof-signal__caption">Nice to meet you.</p>
         <h2 id="signal-title">The goal is not more edits. It&apos;s to build what <em>evolves.</em></h2>
         <p className="proof-signal__copy">One day, I hope the work speaks in places I have not reached yet: a video, a paper, a stage, or something that has not been invented. Until then, I&apos;ll keep making the next thing myself.</p>

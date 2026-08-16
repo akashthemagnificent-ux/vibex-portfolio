@@ -57,3 +57,12 @@
 - [x] Add Ash’s values, skills, academics context, and honest definition of achievement without inventing credentials or reviews.
 - [x] Add working, accessible links for YouTube, GitHub, email, Discord, TikTok, and Pinterest.
 - [x] Verify the completed story and contact experience on desktop/mobile and confirm a successful production build.
+
+## Optimized 3D Typography Hero
+
+- [x] Inspect the supplied Spline and glTF scene files to identify the typography, moving ball, mesh complexity, and usable materials.
+- [x] Replace the current hero proof artifact with the supplied 3D typography and moving-ball composition.
+- [x] Apply device-aware rendering quality, frame-rate throttling, and an accessible static fallback for low-power or reduced-motion mobile devices.
+- [x] Verify desktop and mobile visual behavior, interaction quality, performance safeguards, and production build output.
+- [x] Pause the desktop Spline scene while it is offscreen and keep the low-power fallback static by default.
+- [x] Re-verify that constrained mobile devices do not initialize or download the Spline scene or other deferred WebGL layers.

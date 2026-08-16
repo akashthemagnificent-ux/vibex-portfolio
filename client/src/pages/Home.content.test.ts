@@ -20,4 +20,12 @@ describe("Vibex introduction content", () => {
     expect(homeSource).toContain("https://tiktok.com/@tf.ash__");
     expect(homeSource).toContain("https://pin.it/292aIB7hf");
   });
+
+  it("keeps decorative WebGL layers lazy, hardware-aware, and locally contained", () => {
+    expect(homeSource).toContain('lazy(() => import("@/components/FloatingLines"))');
+    expect(homeSource).toContain("shouldEnableAmbientWebGL");
+    expect(homeSource).toContain("AmbientWebGLBoundary");
+    expect(homeSource).toContain("deviceMemory");
+    expect(homeSource).toContain("prefers-reduced-motion: reduce");
+  });
 });
