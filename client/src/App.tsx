@@ -1,3 +1,7 @@
+/**
+ * Orbiting Monolith style: a dark, immersive editorial shell that frames
+ * a single high-impact portfolio sequence instead of a generic application UI.
+ */
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -27,7 +31,7 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider
-        defaultTheme="light"
+        defaultTheme="dark"
         // switchable
       >
         <TooltipProvider>
