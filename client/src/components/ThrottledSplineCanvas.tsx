@@ -1,11 +1,51 @@
 import Spline from "@splinetool/react-spline";
 import { useEffect, useRef } from "react";
 
+type SplineObjectLike = {
+  name: string;
+  children?: SplineObjectLike[];
+  visible?: boolean;
+  geometry?: { name?: string } | null;
+};
+
 type SplineApplication = {
   stop: () => void;
   play: () => void;
   requestRender: () => void;
+  root?: SplineObjectLike | null;
 };
+
+/**
+ * Hide sphere/ball decorations from the scene so only the typography motion
+ * remains. Objects are identified by spherical geometry names; the typography
+ * meshes are preserved untouched.
+ */
+function hideSphericalDecorations(application: SplineApplication) {
+  const raw = application as unknown as Record<string, unknown>;
+  const sceneRoot =
+    (raw.root as SplineObjectLike | undefined) ??
+    (raw._scene as SplineObjectLike | undefined) ??
+    ((raw._scene as unknown as { root?: SplineObjectLike })?.root);
+  const seed = sceneRoot?.children ?? (raw.root !== undefined ? [] : undefined);
+  if (seed === undefined) return;
+
+  const sphericalPattern = /sphere|ball|globe|orb|parent|follow|child/i;
+  const pending: SplineObjectLike[] = [...seed];
+  while (pending.length > 0) {
+    const candidate = pending.pop();
+    if (!candidate) continue;
+    const geometryName = candidate.geometry?.name ?? "";
+    const geometryType = (candidate.geometry as { type?: string } | null)?.type ?? "";
+    const isSphereByName = sphericalPattern.test(candidate.name);
+    const isSphereGeometry = sphericalPattern.test(geometryName) || geometryType === "SphereGeometry";
+    if ((isSphereByName || isSphereGeometry) && candidate.visible !== false) {
+      candidate.visible = false;
+    }
+    if (candidate.children) {
+      pending.push(...candidate.children);
+    }
+  }
+}
 
 type ThrottledSplineCanvasProps = {
   scene: string;
@@ -49,6 +89,7 @@ export default function ThrottledSplineCanvas({ scene, className, onReady, onFai
         scene={scene}
         renderOnDemand
         onLoad={(application) => {
+          hideSphericalDecorations(application as SplineApplication);
           applicationRef.current = application as SplineApplication;
           application.requestRender();
           onReady();

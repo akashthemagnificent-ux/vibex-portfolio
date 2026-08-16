@@ -66,3 +66,9 @@
 - [x] Verify desktop and mobile visual behavior, interaction quality, performance safeguards, and production build output.
 - [x] Pause the desktop Spline scene while it is offscreen and keep the low-power fallback static by default.
 - [x] Re-verify that constrained mobile devices do not initialize or download the Spline scene or other deferred WebGL layers.
+
+## Ball Removal & Floating Lines Visibility
+
+- [x] Kill the 3D ball (and its ring ripples) in the supplied Spline hero scene at runtime while keeping the typography fully enabled.
+- [x] Ensure the Floating Lines component is present in the Signal section with the same device-aware quality gating as the 3D scene.
+- [x] Verify the ball-free hero, tests, type check, and production build.
