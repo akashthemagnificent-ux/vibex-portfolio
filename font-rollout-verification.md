@@ -25,3 +25,14 @@
 - [ ] Run pnpm test && pnpm check && pnpm build
 - [ ] Mark todo.md font items complete
 - [ ] Save checkpoint
+
+
+## Signal Alignment Fix (mobile) — state after CSS changes
+
+Requested by user (screenshot with green lines): (1) "The goal is not more edits…" headline must stay inside the left text column on mobile (was overflowing right past the marked boundary); (2) headline + "One day…" paragraph should be vertically centered between the section top and the contact grid; (3) remove the "This is intentionally a partial record…" privacy note entirely.
+
+Changes made:
+- Home.tsx: wrapped h2#signal-title + p.proof-signal__copy in a new `.signal-copy` wrapper; removed the `.privacy-note` <p>.
+- index.css: added `.signal-copy` max-width `min(calc(62vw - 48px), 430px)` at base; in the existing `@media (max-width: 820px)` block added: proof-signal becomes flex column, signal-copy flex:1 with justify-content center, max-width `min(calc(62vw - 48px), 330px)`, left margin `min(6vw, 20px)`; h2 margin-top 0 and reduced clamp `clamp(3.35rem, 13vw, 5.1rem)`; copy margin-left 0; removed old mobile overrides `.proof-signal h2 { max-width: 310px; }` and the copy margin-left 8% rule (deleted via edit); removed both `.privacy-note` CSS blocks. proof-return bottom moved to 148px on mobile to clear the nav bar + return link.
+
+Verification pending: mobile screenshot at 390px shows signal section — need to confirm h2 within column, paragraph centered between caption and contact grid, no privacy note. Full-page mobile shot at 390x844 shows headline fits in ~4 lines, left-aligned with caption, contact grid below. Then: pnpm test (12 tests incl typography register), pnpm check, pnpm build, mark todo items, checkpoint, deliver.

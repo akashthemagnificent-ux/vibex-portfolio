@@ -90,3 +90,9 @@
 - [x] Assign clear, intentional roles to all four requested typefaces across brand, headings, editorial statements, technical UI, and body copy.
 - [x] Apply the new typography system consistently across desktop and mobile without introducing layout overflow or readability regressions.
 - [x] Verify font loading, accessibility, tests, type check, and production build output.
+
+## Signal Section Alignment (mobile)
+
+- [x] Constrain the "The goal is not more edits…" headline inside the signal text column (not overflowing past its right edge) on mobile.
+- [x] Vertically center the headline + "One day…" paragraph within the space between the section top and the contact grid so it feels aligned.
+- [x] Remove the "This is intentionally a partial record…" privacy note from the signal section.

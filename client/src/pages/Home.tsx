@@ -190,12 +190,13 @@ export default function Home() {
           <AmbientWebGLBoundary><Suspense fallback={null}><FloatingLines linesGradient={["#324035", "#9bae9f", "#d8c19a"]} enabledWaves={["middle", "bottom"]} lineCount={[3, 4]} lineDistance={[13, 19]} middleWavePosition={{ x: 2.7, y: 0.06, rotate: 0.12 }} bottomWavePosition={{ x: 1.5, y: -0.5, rotate: 0.24 }} animationSpeed={0.18} interactive={false} parallax={false} mixBlendMode="screen" /></Suspense></AmbientWebGLBoundary>
         </div>
         <div className="proof-signal__mark"><VibexStar /></div><p className="proof-caption proof-signal__caption">Nice to meet you.</p>
-        <h2 id="signal-title">The goal is not more edits. It&apos;s to build what <em>evolves.</em></h2>
-        <p className="proof-signal__copy">One day, I hope the work speaks in places I have not reached yet: a video, a paper, a stage, or something that has not been invented. Until then, I&apos;ll keep making the next thing myself.</p>
+        <div className="signal-copy">
+          <h2 id="signal-title">The goal is not more edits. It&apos;s to build what <em>evolves.</em></h2>
+          <p className="proof-signal__copy">One day, I hope the work speaks in places I have not reached yet: a video, a paper, a stage, or something that has not been invented. Until then, I&apos;ll keep making the next thing myself.</p>
+        </div>
         <div className="signal-contact" aria-label="Contact links">
           {contactLinks.map((link) => <ExternalLink href={link.href} className="contact-link" key={link.label}><span>{link.label}</span><strong>{link.detail}</strong><ArrowUpRight size={14} /></ExternalLink>)}
         </div>
-        <p className="privacy-note">This is intentionally a partial record. No face, voice, location, or personal relationship information is shared here.</p>
         <a className="proof-return" href="#index">Return to the first page <ArrowUpRight size={15} /></a>
       </section>
     </main>

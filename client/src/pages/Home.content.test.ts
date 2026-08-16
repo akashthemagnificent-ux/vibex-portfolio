@@ -9,7 +9,7 @@ describe("Vibex introduction content", () => {
     expect(homeSource).toContain("116 released. Nearly 1,000 unfinished.");
     expect(homeSource).toContain("I don&apos;t have shiny awards or big names behind me.");
     expect(homeSource).toContain("This record intentionally leaves out my face, voice, location, and personal relationships.");
-    expect(homeSource).toContain("No face, voice, location, or personal relationship information is shared here.");
+    expect(homeSource).not.toContain("This is intentionally a partial record");
   });
 
   it("keeps each approved public contact destination available", () => {
