@@ -48,3 +48,12 @@
 - [x] Assess the component and select a placement that complements rather than competes with the hero aurora.
 - [x] Tune Floating Lines to the liminal-terminal palette and preserve content accessibility and reduced-motion behavior.
 - [x] Verify the refined desktop/mobile composition and production build.
+
+## Ash / Vibex Introduction Content
+
+- [x] Translate Ash’s supplied identity, tagline, and privacy boundaries into the existing hero and statement sections.
+- [x] Build the personal creative story from Alight Motion beginnings through the current evolving practice.
+- [x] Present the disclosed work record: anime edits, Nebula LLM, custom Discord client, bots, and open-source contributions.
+- [x] Add Ash’s values, skills, academics context, and honest definition of achievement without inventing credentials or reviews.
+- [x] Add working, accessible links for YouTube, GitHub, email, Discord, TikTok, and Pinterest.
+- [x] Verify the completed story and contact experience on desktop/mobile and confirm a successful production build.
