@@ -20,3 +20,10 @@
 - [x] Preserve the existing cobalt proof artifact in the hero beneath the loader.
 - [x] Reveal the website only after the application is ready, with a clean reduced-motion-safe exit.
 - [x] Verify the loader, hero preservation, desktop, and mobile entry experience.
+
+## Mysterious Cyan Palette
+
+- [x] Replace the current palette with the supplied navy, cyan, and restrained violet token system.
+- [x] Recalibrate text contrast, panels, buttons, links, and the entry loader for the new dark environment.
+- [x] Apply cyan and violet glow only to intentional mysterious or glitch moments.
+- [x] Verify the recolored desktop and mobile experience before delivery.
