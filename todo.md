@@ -83,3 +83,10 @@
 ## Signal Paragraph Alignment
 
 - [x] Slide the Signal section intro paragraph left so it aligns with the page's content edge.
+
+## Four-Font Typography System
+
+- [x] Source or configure Rosnoc, Eurostyle, PVC Dynasty, and Satoshi with web-safe fallback behavior.
+- [x] Assign clear, intentional roles to all four requested typefaces across brand, headings, editorial statements, technical UI, and body copy.
+- [x] Apply the new typography system consistently across desktop and mobile without introducing layout overflow or readability regressions.
+- [x] Verify font loading, accessibility, tests, type check, and production build output.
