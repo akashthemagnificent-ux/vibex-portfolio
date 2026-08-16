@@ -75,7 +75,11 @@
 
 ## Hero Clear-Out for Custom Component
 
-- [ ] Fully disable the hero Spline scene so it never loads the ball or any scene file.
-- [ ] Remove the lightweight fallback frame (orb, VIBE X. lettering, EDIT / PASSION label) from the hero so the field is completely clear.
-- [ ] Ungate the Floating Lines component so it renders on all devices, including low-spec mobile.
-- [ ] Verify desktop/mobile visuals, tests, type check, and production build.
+- [x] Fully disable the hero Spline scene so it never loads the ball or any scene file.
+- [x] Remove the lightweight fallback frame (orb, VIBE X. lettering, EDIT / PASSION label) from the hero so the field is completely clear.
+- [x] Ungate the Floating Lines component so it renders on all devices, including low-spec mobile.
+- [x] Verify desktop/mobile visuals, tests, type check, and production build.
+
+## Signal Paragraph Alignment
+
+- [x] Slide the Signal section intro paragraph left so it aligns with the page's content edge.

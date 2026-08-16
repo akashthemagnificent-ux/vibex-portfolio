@@ -91,6 +91,11 @@ Scene URL: /manus-storage/vibex-distorting-typography_3bccffc6.splinecode (4.1MB
 - ALTERNATIVE ROBUST FIX if matching fails: in hideSphericalDecorations, hide objects whose geometry type is 'SphereGeometry'/'Sphere'/'IcoSphere' OR whose type field is spherical; but ensure typography (likely type 'Text'/'Typography') is preserved. Scene strings confirm 'SphereGeometry' marker exists in binary.
 - Ball screenshot confirmed STILL visible (desktop 1440). Floating Lines check pending on desktop full-page.
 
+## SIGNAL PARAGRAPH ALIGNMENT (Aug 16, 2026) — DONE
+- User: slide the Signal intro paragraph left to align with page content edge.
+- CSS changed (index.css, proof-signal__copy): desktop base margin-left 43% -> 16%; .proof-signal--wide margin-left: min(12vw,175px) -> 0; tablet media 16% -> 8%; <=820px media 16% -> 8%.
+- Verified full-page screenshots at 390px and 1280px: paragraph now aligns with content edge; Floating Lines visible right-side field on desktop. Still need: pnpm check/build then checkpoint.
+
 ## Validate after fix
 - Screenshots desktop 1440x900 (hero ball gone, typography intact; full page shows Floating Lines).
 - Mobile 390x844 fallback must remain static and load nothing.
