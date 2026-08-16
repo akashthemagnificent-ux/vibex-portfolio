@@ -72,3 +72,10 @@
 - [x] Kill the 3D ball (and its ring ripples) in the supplied Spline hero scene at runtime while keeping the typography fully enabled.
 - [x] Ensure the Floating Lines component is present in the Signal section with the same device-aware quality gating as the 3D scene.
 - [x] Verify the ball-free hero, tests, type check, and production build.
+
+## Hero Clear-Out for Custom Component
+
+- [ ] Fully disable the hero Spline scene so it never loads the ball or any scene file.
+- [ ] Remove the lightweight fallback frame (orb, VIBE X. lettering, EDIT / PASSION label) from the hero so the field is completely clear.
+- [ ] Ungate the Floating Lines component so it renders on all devices, including low-spec mobile.
+- [ ] Verify desktop/mobile visuals, tests, type check, and production build.

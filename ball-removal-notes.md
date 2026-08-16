@@ -64,7 +64,21 @@
 - HERO VERIFIED: ball + ripples gone, typography motion intact (screenshot desktop / confirms "E.X.! THERE EDIT MISSION" text without spheres).
 - Floating Lines: code exists in Home.tsx (lazy import + renderAmbientWebGL gate in Proof-signal `proof-floating-lines` absolute field 30vw right side, opacity .52 screen blend). Gate: not touch, not saveData/2g/3g, deviceMemory>=4, cores>=4, width>900px. Sandbox screenshot browser may count as `pointer: coarse` => gate may be FALSE => layer hidden in screenshots. In real desktop it should show. Verify by console-grep of FloatingLines fetch in desktop capture log.
 
-## CURRENT STATE (desktop capture after fix)
+## CLEAR-OUT STATUS: IMPLEMENTED
+1. DONE — HeroTypographyScene.tsx rewritten to render only an empty div (class hero-typography-scene hero-typography-scene--empty motion-clip motion-clip--2, aria-hidden, aria-label="Reserved hero field"). No Spline load, no fallback frame.
+2. DONE — ThrottledSplineCanvas.tsx + its test files deleted (no longer imported anywhere).
+3. DONE — HeroTypographyScene.test.ts rewritten: guards scene never loads, fallback never renders, slot marked empty.
+4. DONE — Home.tsx: removed shouldEnableAmbientWebGL + renderAmbientWebGL state/effector; FloatingLines now renders unconditionally (still inside lazy Suspense + AmbientWebGLBoundary error boundary).
+5. DONE — index.css: .hero-typography-scene--empty { display: none } (desktop); mobile override positions it (display keeps hiding it). Fallback/orb/type CSS left as inert dead rules.
+VALIDATED: pnpm check/test/build all pass (7 tests). Screenshots desktop+mobile: hero field fully empty (no orb, no X., no TYPE/MOTION note). Network log: latest splinecode fetches are from 13:28:46 (old); cleared-hero captures at ~13:37-13:38 made no splinecode/FloatingLines requests. Floating Lines now un-gated (renderAmbientWebGL removed), still lazy + AmbientWebGLBoundary.
+OPEN: User will send replacement component later to fill the cleared hero field.
+
+## CLEAR-OUT PLAN (per user + debug agent, high confidence)
+User wants hero right-side field FULLY EMPTY (for custom component later) + Floating Lines UN-GATED (everyone including low-spec mobile).
+Plan: (1) Home.tsx: replace <HeroTypographyScene /> with an empty placeholder <div className="hero-typography-scene hero-typography-scene__placeholder" aria-hidden="true"> preserving layout slot; (2) FloatingLines: remove renderAmbientWebGL gate entirely, render directly; can drop shouldEnableAmbientWebGL state/effector; (3) keep CSS classes, delete or keep hero-typography-scene CSS but make fallback empty — simplest: keep component file but render null; (4) verify no .splinecode fetch on mobile, tests/build pass, checkpoint.
+Scene URL: /manus-storage/vibex-distorting-typography_3bccffc6.splinecode (4.1MB). Checkpoint to clear: c007ea0d.
+
+## OLD CURRENT STATE (desktop capture after fix)
 - Hero ball REMOVED visually (no sphere visible). Typography still moving.
 - FloatingLines NOT fetched in desktop capture (grep empty). Gate `shouldEnableAmbientWebGL` blocks in sandbox: screenshot browser likely matches `pointer: coarse` OR deviceMemory<4. Need to verify with browserConsole check for `renderAmbientWebGL` or force gate to true temporarily? NO — real desktop browsers will pass. Explain to user: layer gated like 3D scene for performance; visible on real desktop.
 - TS watcher errors are stale (1:19PM) — live pnpm check passes clean.

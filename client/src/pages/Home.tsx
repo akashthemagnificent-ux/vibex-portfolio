@@ -7,20 +7,6 @@ import BoxLoader from "@/components/ui/box-loader";
 
 const FloatingLines = lazy(() => import("@/components/FloatingLines"));
 
-type ExtendedNavigator = Navigator & {
-  deviceMemory?: number;
-  connection?: { effectiveType?: string; saveData?: boolean };
-};
-
-function shouldEnableAmbientWebGL() {
-  if (typeof window === "undefined") return false;
-  const navigatorInfo = navigator as ExtendedNavigator;
-  const compactOrTouch = window.matchMedia("(max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce)").matches;
-  const constrainedConnection = navigatorInfo.connection?.saveData || ["slow-2g", "2g", "3g"].includes(navigatorInfo.connection?.effectiveType ?? "");
-  const limitedHardware = (navigatorInfo.deviceMemory ?? 8) < 4 || (navigatorInfo.hardwareConcurrency ?? 8) < 4;
-  return !compactOrTouch && !constrainedConnection && !limitedHardware;
-}
-
 class AmbientWebGLBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
   state = { hasError: false };
 
@@ -120,8 +106,6 @@ function ExternalLink({ href, children, className = "" }: { href: string; childr
 export default function Home() {
   const [activeScene, setActiveScene] = useState("index");
   const [entryState, setEntryState] = useState<"loading" | "leaving" | "done">("loading");
-  const [renderAmbientWebGL, setRenderAmbientWebGL] = useState(false);
-
   useEffect(() => {
     const startedAt = performance.now();
     let revealTimer: number | undefined;
@@ -138,14 +122,6 @@ export default function Home() {
     const exitTimer = window.setTimeout(() => setEntryState("done"), 420);
     return () => window.clearTimeout(exitTimer);
   }, [entryState]);
-
-  useEffect(() => {
-    const updateAmbientTier = () => setRenderAmbientWebGL(shouldEnableAmbientWebGL());
-    updateAmbientTier();
-    const mediaQuery = window.matchMedia("(max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce)");
-    mediaQuery.addEventListener("change", updateAmbientTier);
-    return () => mediaQuery.removeEventListener("change", updateAmbientTier);
-  }, []);
 
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-scene]"));
@@ -211,7 +187,7 @@ export default function Home() {
 
       <section className="proof-signal" id="signal" data-scene aria-labelledby="signal-title">
         <div className="proof-floating-lines" aria-hidden="true">
-          {renderAmbientWebGL ? <AmbientWebGLBoundary><Suspense fallback={null}><FloatingLines linesGradient={["#324035", "#9bae9f", "#d8c19a"]} enabledWaves={["middle", "bottom"]} lineCount={[3, 4]} lineDistance={[13, 19]} middleWavePosition={{ x: 2.7, y: 0.06, rotate: 0.12 }} bottomWavePosition={{ x: 1.5, y: -0.5, rotate: 0.24 }} animationSpeed={0.18} interactive={false} parallax={false} mixBlendMode="screen" /></Suspense></AmbientWebGLBoundary> : null}
+          <AmbientWebGLBoundary><Suspense fallback={null}><FloatingLines linesGradient={["#324035", "#9bae9f", "#d8c19a"]} enabledWaves={["middle", "bottom"]} lineCount={[3, 4]} lineDistance={[13, 19]} middleWavePosition={{ x: 2.7, y: 0.06, rotate: 0.12 }} bottomWavePosition={{ x: 1.5, y: -0.5, rotate: 0.24 }} animationSpeed={0.18} interactive={false} parallax={false} mixBlendMode="screen" /></Suspense></AmbientWebGLBoundary>
         </div>
         <div className="proof-signal__mark"><VibexStar /></div><p className="proof-caption proof-signal__caption">Nice to meet you.</p>
         <h2 id="signal-title">The goal is not more edits. It&apos;s to build what <em>evolves.</em></h2>

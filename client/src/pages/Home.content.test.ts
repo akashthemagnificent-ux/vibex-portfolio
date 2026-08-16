@@ -21,11 +21,18 @@ describe("Vibex introduction content", () => {
     expect(homeSource).toContain("https://pin.it/292aIB7hf");
   });
 
-  it("keeps decorative WebGL layers lazy, hardware-aware, and locally contained", () => {
+  it("keeps the Floating Lines layer always enabled and locally contained", () => {
     expect(homeSource).toContain('lazy(() => import("@/components/FloatingLines"))');
-    expect(homeSource).toContain("shouldEnableAmbientWebGL");
     expect(homeSource).toContain("AmbientWebGLBoundary");
-    expect(homeSource).toContain("deviceMemory");
-    expect(homeSource).toContain("prefers-reduced-motion: reduce");
+    expect(homeSource).not.toContain("shouldEnableAmbientWebGL");
+    expect(homeSource).not.toContain("deviceMemory");
+  });
+
+  it("keeps the hero reserved field empty of the 3D scene on all devices", () => {
+    const sceneSource = readFileSync(new URL("../components/HeroTypographyScene.tsx", import.meta.url), "utf8");
+    expect(sceneSource).not.toContain("splinecode");
+    expect(sceneSource).not.toContain("ThrottledSplineCanvas");
+    expect(sceneSource).not.toContain("hero-typography-scene__orb");
+    expect(sceneSource).toContain("hero-typography-scene--empty");
   });
 });
