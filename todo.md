@@ -41,3 +41,10 @@
 - [x] Integrate Aurora as a non-interactive atmospheric sky layer without compromising navigation, loading, or content readability.
 - [x] Tune the component’s color and movement to the muted liminal-terminal palette rather than a default neon treatment.
 - [x] Verify desktop and mobile behavior and a successful production build.
+
+## Floating Lines Atmosphere
+
+- [x] Add the requested React Bits Floating Lines JS/CSS component to the project.
+- [x] Assess the component and select a placement that complements rather than competes with the hero aurora.
+- [x] Tune Floating Lines to the liminal-terminal palette and preserve content accessibility and reduced-motion behavior.
+- [x] Verify the refined desktop/mobile composition and production build.

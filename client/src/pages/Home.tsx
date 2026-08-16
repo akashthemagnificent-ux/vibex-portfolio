@@ -6,6 +6,7 @@
 import { ArrowDown, ArrowUpRight, CornerDownRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Aurora from "@/components/Aurora";
+import FloatingLines from "@/components/FloatingLines";
 import BoxLoader from "@/components/ui/box-loader";
 
 const navigation = [
@@ -234,6 +235,20 @@ export default function Home() {
       </section>
 
       <section className="proof-signal" id="signal" data-scene aria-labelledby="signal-title">
+        <div className="proof-floating-lines" aria-hidden="true">
+          <FloatingLines
+            linesGradient={["#324035", "#9bae9f", "#d8c19a"]}
+            enabledWaves={["middle", "bottom"]}
+            lineCount={[3, 4]}
+            lineDistance={[13, 19]}
+            middleWavePosition={{ x: 2.7, y: 0.06, rotate: 0.12 }}
+            bottomWavePosition={{ x: 1.5, y: -0.5, rotate: 0.24 }}
+            animationSpeed={0.18}
+            interactive={false}
+            parallax={false}
+            mixBlendMode="screen"
+          />
+        </div>
         <div className="proof-signal__mark"><VibexStar /></div>
         <p className="proof-caption proof-signal__caption">File stays open.</p>
         <h2 id="signal-title">A name is only<br />the first <em>layer.</em></h2>
