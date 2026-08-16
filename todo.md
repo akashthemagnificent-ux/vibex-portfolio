@@ -27,3 +27,10 @@
 - [x] Recalibrate text contrast, panels, buttons, links, and the entry loader for the new dark environment.
 - [x] Apply cyan and violet glow only to intentional mysterious or glitch moments.
 - [x] Verify the recolored desktop and mobile experience before delivery.
+
+## Liminal Nostalgia Palette Revision
+
+- [x] Replace the cyber-cyan color system with an original, desaturated liminal-nostalgic nocturnal palette.
+- [x] Keep a sparse, tactile glow treatment while removing generic dark-purple-gradient cues.
+- [x] Rebalance panels, typography, proof artifact, navigation, and interactive states for the new material language.
+- [x] Verify the revised atmosphere on desktop and mobile and confirm a passing production build.
