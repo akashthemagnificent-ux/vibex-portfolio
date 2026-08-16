@@ -1,153 +1,92 @@
 /**
- * VIBEX / Reference-led homepage: an interactive midnight self-interview that unfolds as full-screen scenes.
- * The layout prioritizes film-like pacing, emotional scale, light, and narrative breathing room.
+ * VIBEX / Memory Observatory homepage.
+ * The copy is intentionally secondary: it annotates an explorable WebGL world instead of replacing it.
  */
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Play, Sparkles } from "lucide-react";
-import AuroraField from "@/components/AuroraField";
-import SelfInterview from "@/components/SelfInterview";
-import { skills, socialLinks, type AudioScene } from "@/lib/ash";
-import { useCinematicAudio } from "@/hooks/useCinematicAudio";
+import { useCallback, useEffect, useState } from "react";
+import { ArrowDownRight, ArrowUpRight, Box, Move3D, Orbit, Sparkles } from "lucide-react";
+import { useReducedMotion } from "framer-motion";
+import MemoryObservatory, { observatoryLandmarks } from "@/components/MemoryObservatory";
+import { socialLinks } from "@/lib/ash";
 
-const sceneMotion = {
-  initial: { opacity: 0, y: 26, filter: "blur(9px)" },
-  whileInView: { opacity: 1, y: 0, filter: "blur(0px)" },
-  viewport: { amount: 0.48, once: true },
-  transition: { duration: 0.92, ease: [0.23, 1, 0.32, 1] as const },
-};
+const storyStops = [
+  {
+    eyebrow: "00 / THE PERSON BEHIND THE NAME",
+    statement: "People know the name.\nAlmost nobody knows the person behind it.",
+    body: "Hi, I’m Ash. Vibex is the name I create under. I’m 17, on IST, and obsessed with building things that did not exist before.",
+    action: "Explore the observatory",
+  },
+  {
+    eyebrow: "01 / THE FIRST FRAME",
+    statement: "I stopped chasing the light.\nThen I learned to create it.",
+    body: "In 2020, at 11, I opened Alight Motion after watching an anime edit. I kept failing to recreate it. That was the moment I decided my style did not need to look like anybody else’s.",
+    action: "Find the archive",
+  },
+  {
+    eyebrow: "02 / THE ARCHIVE",
+    statement: "116 released edits.\nAlmost a thousand ways to learn.",
+    body: "54 edits are public on my YouTube. The rest are experiments, restarts, and unfinished ideas. I never wanted to make more of the same — I wanted each one to become more mine.",
+    action: "Open YouTube",
+  },
+  {
+    eyebrow: "03 / THE NEBULA CORE",
+    statement: "I taught an idea\nhow to think back.",
+    body: "Nebula is my custom language model, trained on publicly available developer data. Around it: a Discord client built from scratch, countless bots, websites, software, and open-source contributions.",
+    action: "See GitHub",
+  },
+  {
+    eyebrow: "04 / THE OPEN PORTAL",
+    statement: "I am still learning.\nThat is the whole point.",
+    body: "I am not looking for a title or a label. I am building toward something exceptional, wherever the next experiment takes me. Creative, authentic, loyal — and far from finished.",
+    action: "Keep in touch",
+  },
+] as const;
 
 export default function Home() {
-  const [hasBegun, setHasBegun] = useState(false);
-  const [interviewOpen, setInterviewOpen] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
-  const { begin, playScene, started } = useCinematicAudio();
-  const rootRef = useRef<HTMLElement>(null);
-
-  const startFilm = useCallback(async () => {
-    await begin();
-    setHasBegun(true);
-  }, [begin]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const reducedMotion = useReducedMotion() ?? false;
 
   useEffect(() => {
-    if (!started || !rootRef.current) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) playScene(entry.target.getAttribute("data-audio-scene") as AudioScene);
-        });
-      },
-      { threshold: 0.6 },
-    );
-    const scenes = rootRef.current.querySelectorAll<HTMLElement>("[data-audio-scene]");
-    scenes.forEach((scene) => observer.observe(scene));
+    const stops = Array.from(document.querySelectorAll<HTMLElement>("[data-story-stop]"));
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActiveIndex(Number((visible.target as HTMLElement).dataset.storyStop));
+    }, { threshold: [0.35, 0.52, 0.72], rootMargin: "-8% 0px -12% 0px" });
+    stops.forEach((stop) => observer.observe(stop));
     return () => observer.disconnect();
-  }, [started, playScene]);
+  }, []);
 
-  return (
-    <main ref={rootRef} className={`vibex-film ${hasBegun ? "has-begun" : ""}`}>
-      <AuroraField />
-      <div className="film-grain" aria-hidden="true" />
-      <a className="skip-link" href="#origin">Skip to the story</a>
+  const goToLandmark = useCallback((index: number) => {
+    setActiveIndex(index);
+    document.getElementById(`landmark-${index}`)?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+  }, [reducedMotion]);
 
-      <AnimatePresence>
-        {!hasBegun && (
-          <motion.section className="begin-gate" initial={{ opacity: 1 }} exit={{ opacity: 0, transition: { duration: 0.6 } }}>
-            <AuroraField intensity="low" />
-            <div className="begin-gate__content">
-              <p className="scene-kicker">VIBEX / A SELF-INTERVIEW</p>
-              <div className="signal-dot" aria-hidden="true"><i /><i /><i /></div>
-              <h1>People know the name.<br />Almost nobody knows the person.</h1>
-              <p>This story is meant to be heard.</p>
-              <button type="button" className="begin-button" onClick={startFilm}>
-                <Play size={15} fill="currentColor" /> Begin the self-interview
-              </button>
-            </div>
-            <p className="begin-gate__foot">Sound begins after you enter.</p>
-          </motion.section>
-        )}
-      </AnimatePresence>
+  const contentAction = (index: number) => {
+    if (index === 2) return <a href="https://youtube.com/@vibe.x." target="_blank" rel="noreferrer">{storyStops[index].action}<ArrowUpRight size={16} /></a>;
+    if (index === 3) return <a href="https://github.com/akashthemagnificent-ux" target="_blank" rel="noreferrer">{storyStops[index].action}<ArrowUpRight size={16} /></a>;
+    if (index === 4) return <a href="mailto:Vibexforbusiness@gmail.com">{storyStops[index].action}<ArrowUpRight size={16} /></a>;
+    return <button type="button" onClick={() => goToLandmark(index + 1)}>{storyStops[index].action}<ArrowDownRight size={16} /></button>;
+  };
 
-      <header className="film-header">
-        <span>VIBEX</span><span>ASH / IST</span><span>2026</span>
-      </header>
-
-      <section data-audio-scene="signal" className="scene scene--signal">
-        <motion.div {...sceneMotion} className="scene__center signal-copy">
-          <p className="scene-kicker">VIBEX / A PERSONAL INTRODUCTION</p>
-          <div className="eyes" aria-hidden="true"><i /><i /></div>
-          <h1>
-            <span>People know the name.</span>
-            <em>Almost nobody knows the person behind it.</em>
-          </h1>
-          <p className="scene__lede">Hi, I’m Ash. You might know me as Vibex.</p>
-        </motion.div>
-        <a className="scene-scroll" href="#origin" aria-label="Scroll to the beginning"><ArrowDown size={17} /></a>
+  return <main className="observatory-page">
+    <MemoryObservatory activeIndex={activeIndex} onSelect={goToLandmark} reduceMotion={reducedMotion} />
+    <a className="skip-link" href="#landmark-0">Skip to story</a>
+    <header className="observatory-header"><a href="#landmark-0" onClick={(event) => { event.preventDefault(); goToLandmark(0); }}>VIBEX<span>●</span></a><p>ASH / PERSONAL OBSERVATORY</p><p>IST / UTC +5:30</p></header>
+    <div className="observatory-instructions"><Move3D size={15} /><span>Move through the world</span><i /> <span>Hover the artefacts</span><i /> <span>Scroll the path</span></div>
+    <div className="story-layer">
+      {storyStops.map((stop, index) => <section key={stop.eyebrow} id={`landmark-${index}`} data-story-stop={index} className={`story-stop story-stop--${index}`}>
+        <article className="story-card">
+          <p className="story-card__eyebrow">{stop.eyebrow}</p>
+          <h1>{stop.statement.split("\n").map((line) => <span key={line}>{line}</span>)}</h1>
+          <p className="story-card__body">{stop.body}</p>
+          <div className="story-card__action">{contentAction(index)}</div>
+          <p className="story-card__object"><Box size={14} /> {observatoryLandmarks[index].title}</p>
+        </article>
+      </section>)}
+      <section className="contact-deck">
+        <div><p className="story-card__eyebrow">SIGNAL / KEEP IN TOUCH</p><h2>Everything I share,<br /><em>on my terms.</em></h2><p>My face, voice, location, and personal relationships remain private. The work is public. That is enough.</p></div>
+        <nav aria-label="Vibex social links">{socialLinks.map((link) => <a key={link.label} href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"><span>{link.label}</span><b>{link.value}</b><ArrowUpRight size={15} /></a>)}</nav>
+        <div className="contact-deck__seal"><Orbit size={18} /><span>VIBEX / ASH</span><Sparkles size={15} /></div>
       </section>
-
-      <section id="origin" data-audio-scene="origin" className="scene scene--origin">
-        <div className="scene__copy scene__copy--left">
-          <motion.p {...sceneMotion} className="scene-kicker">01 / THE BEGINNING</motion.p>
-          <motion.h2 {...sceneMotion}>Every story starts somewhere.<br /><em>This one began in 2020.</em></motion.h2>
-          <motion.p {...sceneMotion} className="scene__body">At 11, Ash opened Alight Motion after seeing an edit of his favourite anime character. He tried to create something like it. Then, again. And again.</motion.p>
-        </div>
-        <div className="origin-terminal" aria-hidden="true"><span>2020</span><b>ALIGHT MOTION</b><small>INITIALIZING A DIFFERENT DIRECTION...</small></div>
-        <div className="echo-words" aria-hidden="true"><span>again</span><span>again</span><span>again</span></div>
-      </section>
-
-      <section data-audio-scene="becoming" className="scene scene--becoming">
-        <div className="bokeh bokeh--one" /><div className="bokeh bokeh--two" /><div className="bokeh bokeh--three" />
-        <motion.div {...sceneMotion} className="scene__center becoming-copy">
-          <p className="scene-kicker">02 / THE WORK</p>
-          <p className="interlude">He stopped chasing a style. He started building one.</p>
-          <div className="number-cloud">
-            <strong>6</strong><span>years creating</span>
-            <strong>116</strong><span>released edits</span>
-            <strong>~1000</strong><span>unfinished attempts</span>
-          </div>
-          <p className="scene__body">Sometimes he changed direction. Sometimes he disappeared. Every return was another way to express the same need: create something that did not exist before.</p>
-        </motion.div>
-        <div className="bubble-stream" aria-label="Creative fields"><span>anime edits</span><span>visuals</span><span>design</span><span>3D</span><span>experiments</span></div>
-      </section>
-
-      <section data-audio-scene="builds" className="scene scene--builds">
-        <div className="build-monitor">
-          <div className="build-monitor__top"><span>03 / WHAT HE BUILDS</span><span>STATUS: EVOLVING</span></div>
-          <motion.div {...sceneMotion} className="build-lines">
-            <article><span>01</span><h3>Edits</h3><p>54 public edits on YouTube. The calling card that started it all.</p><a href="https://youtube.com/@vibe.x." target="_blank" rel="noreferrer">Watch the edits <ArrowUpRight size={15} /></a></article>
-            <article><span>02</span><h3>Nebula</h3><p>A self-trained language model for developer data. Still in motion.</p><a href="https://github.com/akashthemagnificent-ux" target="_blank" rel="noreferrer">Find the traces <ArrowUpRight size={15} /></a></article>
-            <article><span>03</span><h3>Discord client</h3><p>A fully functional custom client, built from scratch. Closed source.</p></article>
-            <article><span>04</span><h3>Bots + open source</h3><p>Countless bots, applications, websites, and contributions made for curiosity.</p></article>
-          </motion.div>
-        </div>
-        <button className="interview-launch" type="button" onClick={() => setInterviewOpen(true)}><Sparkles size={15} /> Ask Ash something</button>
-      </section>
-
-      <section data-audio-scene="vision" className="scene scene--vision">
-        <div className="planet planet--large" /><div className="planet planet--small" /><div className="glint glint--one">✦</div><div className="glint glint--two">✦</div>
-        <motion.div {...sceneMotion} className="scene__center vision-copy">
-          <p className="scene-kicker">04 / WHERE HE IS GOING</p>
-          <h2>The goal was never<br /><em>more of the same.</em></h2>
-          <p className="scene__body">It is to build something that keeps evolving. Maybe one day the name shows up in a video, on a stage, in research, or somewhere new. The person behind it will still be learning.</p>
-        </motion.div>
-      </section>
-
-      <section className="scene scene--close">
-        <motion.div {...sceneMotion} className="scene__center close-copy">
-          <p className="scene-kicker">THE END / OR THE START</p>
-          <h2>Nice to meet you.</h2>
-          <div className="skill-roll">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
-          <p className="scene__body">Creative. Authentic. Loyal. Building things that feel meaningful — while managing school, learning out loud, and keeping the private parts private.</p>
-          <div className="social-roll">
-            {socialLinks.map((link) => <a key={link.label} href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"><span>{link.label}</span>{link.value}<ArrowUpRight size={14} /></a>)}
-          </div>
-          <p className="privacy-note">Face, voice, location, and personal relationships stay private. This is everything Ash chose to share.</p>
-        </motion.div>
-      </section>
-
-      <footer className="film-footer"><span>VIBEX / ASH</span><span>BUILT WITH OBSESSION</span><button type="button" onClick={() => setInterviewOpen(true)}>OPEN SELF-INTERVIEW</button></footer>
-      <SelfInterview open={interviewOpen} onClose={() => setInterviewOpen(false)} />
-      {!shouldReduceMotion && <div className="corner-orbit" aria-hidden="true" />}
-    </main>
-  );
+    </div>
+  </main>;
 }

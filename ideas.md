@@ -1,87 +1,83 @@
-# Orbit Portfolio — Design Exploration
+# VIBEX — Immersive 3D WebGL Redesign
 
-## Three Directional Approaches
+## Three Directions
 
-### 1. Orbiting Monolith
-**Very Brief Intro:** An obsidian editorial canvas anchored by a tactile, celestial object that turns with the visitor. It makes the portfolio feel like a living creative instrument rather than a conventional résumé.
+### 1. The Memory Observatory
+**Very Brief Intro:** A midnight 3D observatory where Ash’s origin, edits, AI work, and future appear as glowing physical artefacts in a navigable room. It turns biography into discovery rather than a scrolling résumé.
 
-**Probability:** 0.047
+**Probability:** 0.036
 
-### 2. Gallery in Motion
-**Very Brief Intro:** A warm, paper-like studio archive with oversized images, kinetic crop transitions, and considered museum-label typography. It feels intimate, cultured, and materially grounded.
+### 2. The Creative Transmission
+**Very Brief Intro:** A deep-space signal catches fragments of Ash’s work as orbiting data, translucent screens, and neural particles. It is high-energy, but its spatial metaphor risks becoming too abstract for a personal introduction.
 
-**Probability:** 0.081
+**Probability:** 0.072
 
-### 3. Signal Garden
-**Very Brief Intro:** A bright botanical future-space where translucent structures, serif type, and ambient depth produce an optimistic experimental feel. It treats projects as a growing ecology of ideas.
+### 3. The Infinite Workbench
+**Very Brief Intro:** An intimate three-dimensional studio desk in the dark, where each tool opens a chapter of the story. It is tactile and personal, but less aligned to the expansiveness of Ash’s ambition.
 
-**Probability:** 0.028
+**Probability:** 0.019
 
 ---
 
-## Chosen Approach — Orbiting Monolith
+## Chosen Approach — The Memory Observatory
 
 ### Design Movement
 
-**Digital Brutalism meets Neo-Editorial Art Direction.** The site uses high-contrast, compositional typography and sparse materiality, then disrupts the stillness with a physically responsive WebGL sculpture. The visual strategy avoids a generic futuristic dashboard: the technology acts as an exhibition piece.
+**Interactive digital scenography with cinematic dream-logic.** This is not a two-dimensional landing page with a 3D prop. The entire experience is a WebGL environment: a camera moves through a dark observatory, physical artefacts react to cursor and scroll, and HTML narrative captions sit on top of the world only when they clarify the journey.
 
 ### Core Principles
 
-1. **One memorable object, not visual clutter.** The hero’s interactive orbital sculpture earns the drama, while every other visual element is restrained.
-2. **Editorial asymmetry.** Content is placed on a large, deliberate axis, with off-grid numbering and staggered type that creates a sense of direction.
-3. **Material contrast.** Near-black ink surfaces, fine ivory typography, brushed-silver lines, and a single luminous chartreuse signal create hierarchy without gradients.
-4. **Motion with consequence.** Pointer movement influences the 3D object; section reveals preserve pace; buttons and cards respond with purposeful shifts rather than decorative effects.
+1. **The story exists as matter.** The 2020 origin is a suspended glass editing panel; 116 edits are a shard cloud; Nebula is a neural core; the Discord client is a floating terminal module; the future is a portal.
+2. **Ash is the centre without exposing private identity.** A custom translucent “V” star-mark, not a face or an avatar, acts as the personal guide through the world.
+3. **The camera is part of the storytelling.** Scroll moves the visitor between landmarks, while cursor movement creates immediate depth, parallax, and object response.
+4. **No flat portfolio UI.** Labels are minimal overlays, objects carry the visual weight, and content unlocks as the visitor reaches it.
 
 ### Color Philosophy
 
-The page begins in **inky black** to make space feel deep and gallery-like. A **warm cloud white** keeps reading humane instead of clinical. The ownable **Orbit Acid** chartreuse punctuates states that deserve attention—availability, directional arrows, and interactive targets—so it never becomes background decoration. Soft zinc-gray creates technical annotation without breaking the editorial mood.
+The world is a nearly black navy void so light has substance. Electric cobalt represents Ash’s restless creative current, moon-white gives the artefacts an emotional glow, and a small violet frequency appears only in Nebula and the future portal. There is no chartreuse and no audio: visual energy comes from depth, bloom-like light, movement, and reflection.
 
-### Layout Paradigm
+### Spatial Paradigm
 
-The layout is an **editorial vertical orbit**: a thin left rail contains the section marker and progress line, while the content repeatedly swings from a huge left-aligned text mass to right-weighted visual evidence. Hero content is intentionally open rather than centered; featured work appears as a sequential, stepping gallery rather than a uniform card grid.
+The site is a **five-stop camera journey** through one continuous world. The camera begins at the Vibex star-mark, moves through the Origin Screen, passes the Edit Archive, enters the Nebula Core, and finishes at the Future Portal. Each stop is a real 3D landmark with a brief narrative overlay and an interaction target.
 
 ### Signature Elements
 
-1. **Orbital monolith:** a physical-looking, wire-edged 3D object composed of faceted rings and a core glow.
-2. **Coordinate labels:** tiny uppercase labels and indexed numbers give each section an exhibition-catalog quality.
-3. **Luminous index line:** a vertical, chartreuse-based progress marker travels softly down the left edge and reappears as dividers and active states.
+1. **Vibex star-mark:** a unique segmented glass “V” sculpture that turns toward the cursor and anchors the world.
+2. **Memory path:** a physical constellation line that visibly connects all landmarks in 3D.
+3. **Artifact halos:** slow-moving rings, shards, and refractive planes that make every chapter feel like a space the visitor entered.
 
 ### Interaction Philosophy
 
-Interactions feel like handling a premium instrument. The hero object leans toward the cursor, project rows expose their vector arrow and color field on hover, and navigation does not pull focus from the reading sequence. All feedback is immediate, tactile, and reversible.
+Visitors explore, rather than merely read. The camera glides with scroll; cursor movement tilts the environment; hovering over an artefact brings it forward and shows a short invitation; clicking an artefact opens a focused information pane. An optional “Explore landmarks” rail offers touch-accessible navigation without reducing the world to a menu.
 
 ### Animation
 
-The orbital scene idles with barely perceptible rotation and cursor-reactive parallax. Entrance reveals use opacity and 12–24px vertical translation, staggered at 60ms. Hover transformations use a sharp custom ease-out in 160–260ms. A reduced-motion preference freezes nonessential movement, maintains readable order, and preserves all interactions.
+Use a continuous low-speed WebGL loop with spring-like object easing. The camera transitions use a long but responsive cubic motion curve; every object has a subtle idle state that increases slightly on focus/hover. Reduced-motion users see the same artefacts in a stable staged composition with immediate camera jumps.
 
 ### Typography System
 
-**DM Mono** carries labels, project metadata, and navigation with compact technical precision. **Space Grotesk** leads bold headlines and major statements with wide, sculptural lettering. Headlines should use dense tracking at display scale, while body copy remains airy, at comfortable line length and 1.55–1.7 line height. No generic Inter usage.
+**Manrope** carries short human captions and actions. **DM Mono** carries coordinates, object names, and technical cues. **Bodoni Moda** appears only in the large story statements, floating over the scene like a film title. Typography never replaces the 3D world; it annotates it.
 
 ### Brand Essence
 
-**Orbit is a creative developer’s selected field notes: immersive interfaces, identities, and digital experiences built for people who notice the details.**
+**Vibex is Ash’s private observatory of public work: a living three-dimensional record of a teenage creator building beyond one medium.**
 
-**Personality:** precise, kinetic, self-possessed.
+**Personality:** imaginative, restless, self-made.
 
 ### Brand Voice
 
-Headlines are declarative and compact; CTAs are directional verbs; microcopy is lucid and factual. Avoid vague invitation language and empty superlatives.
-
-> Example headline: “Digital work with a pulse.”
-
-> Example CTA: “Enter selected work →”
+The voice is personal, assured, and exploratory. Captions name the object first, then reveal why it matters. Example lines: “This is where I stopped copying the light.” and “Nebula is not finished. Neither am I.”
 
 ### Wordmark & Logo
 
-The wordmark is a modified geometric “O” interrupted by a tiny orbital notch; it is paired with a standalone **split-orbit symbol**—two unequal rings crossing a glowing core. The symbol must be recognizable as an icon without text and should appear large enough to read in the header and favicon.
+The logo is a custom **Vibex Star-Mark**: three translucent crystal arms form an open “V” around a bright core. It works as an icon, a navigational beacon, and the first object in the 3D world.
 
 ### Signature Brand Color
 
-**Orbit Acid — #D7FF36.** A high-chroma chartreuse used sparingly as the unmistakable signal of motion, availability, and selection.
+**Vibex Cobalt — #5B7CFF.** A saturated blue-white light used as the world’s guiding energy, never as a flat background.
 
 ## Style Decisions
 
-- Headlines use Space Grotesk as the dominant display voice; ornamental serif italics are avoided unless explicitly introduced as a rare editorial accent with a clear purpose.
-- Orbit Acid `#D7FF36` appears only as signal: orbital traces, active states, arrows, availability, and key indices, never as a large decorative background field.
-- Every major section participates in the vertical orbit system through a visible section index, fine rail or divider logic, and at least one chartreuse signal mark connecting it to the larger sequence.
+- Every major chapter must have a visible 3D object or environment feature; copy alone never carries a section.
+- Audio, narration, sound effects, audio controls, and audio-related prompts are removed completely.
+- The 3D scene stays the focal point on desktop and remains an interactive, touch-friendly landmark world on mobile.
