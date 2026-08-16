@@ -1,20 +1,21 @@
 /**
- * VIBEX / Quiet Precision foundation
- * Warm editorial canvas, ink typography, cobalt as a scarce signal, and slide-like motion.
+ * VIBEX / Cobalt Proof Sheet
+ * Auteur build register: lit mineral paper, a physical cobalt identity artifact,
+ * expressive structural grotesque, and a strictly limited motion vocabulary.
  */
-import { ArrowDownRight, Asterisk, ArrowUpRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowDown, ArrowUpRight, CornerDownRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-const navItems = [
-  { label: "Home", target: "home" },
-  { label: "Record", target: "record" },
-  { label: "Motion", target: "motion" },
+const navigation = [
+  { label: "Index", target: "index" },
+  { label: "Statement", target: "statement" },
+  { label: "Method", target: "method" },
   { label: "Signal", target: "signal" },
 ];
 
-function VibexMark({ className = "" }: { className?: string }) {
+function VibexStar({ className = "" }: { className?: string }) {
   return (
-    <span className={`vibex-mark ${className}`} aria-hidden="true">
+    <span className={`vibex-star ${className}`} aria-hidden="true">
       <i />
       <i />
       <i />
@@ -24,35 +25,65 @@ function VibexMark({ className = "" }: { className?: string }) {
 }
 
 export default function Home() {
-  const [activeScene, setActiveScene] = useState("home");
+  const artifactRef = useRef<HTMLAnchorElement>(null);
+  const [activeScene, setActiveScene] = useState("index");
 
   useEffect(() => {
-    const scenes = Array.from(document.querySelectorAll<HTMLElement>("[data-scene]"));
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-scene]"));
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
+        const primary = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActiveScene(visible.target.id);
+        if (primary) setActiveScene(primary.target.id);
       },
-      { threshold: [0.2, 0.45, 0.7] },
+      { threshold: [0.25, 0.55, 0.8] },
     );
-    scenes.forEach((scene) => observer.observe(scene));
+    sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const artifact = artifactRef.current;
+    if (!artifact || window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)").matches) return;
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const bounds = artifact.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+      artifact.style.setProperty("--tilt-x", `${(-y * 4).toFixed(2)}deg`);
+      artifact.style.setProperty("--tilt-y", `${(x * 5).toFixed(2)}deg`);
+      artifact.style.setProperty("--shift-x", `${(x * 9).toFixed(1)}px`);
+      artifact.style.setProperty("--shift-y", `${(y * 9).toFixed(1)}px`);
+    };
+
+    const reset = () => {
+      artifact.style.setProperty("--tilt-x", "0deg");
+      artifact.style.setProperty("--tilt-y", "0deg");
+      artifact.style.setProperty("--shift-x", "0px");
+      artifact.style.setProperty("--shift-y", "0px");
+    };
+
+    artifact.addEventListener("pointermove", handlePointerMove);
+    artifact.addEventListener("pointerleave", reset);
+    return () => {
+      artifact.removeEventListener("pointermove", handlePointerMove);
+      artifact.removeEventListener("pointerleave", reset);
+    };
+  }, []);
+
   return (
-    <main className="vibex-shell">
-      <header className="vibex-header" aria-label="Primary navigation">
-        <a className="wordmark" href="#home" aria-label="Vibex home">
-          <VibexMark />
-          <span>Vibex</span>
+    <main className="proof-shell">
+      <header className="proof-header" aria-label="Primary navigation">
+        <a className="proof-wordmark" href="#index" aria-label="Vibex home">
+          <VibexStar />
+          <span>V I B E X</span>
         </a>
 
-        <nav className="nav-rail" aria-label="Page sections">
-          {navItems.map((item) => (
+        <nav className="proof-nav" aria-label="Page sections">
+          {navigation.map((item) => (
             <a
-              className={activeScene === item.target ? "nav-item is-active" : "nav-item"}
+              className={activeScene === item.target ? "proof-nav__item is-active" : "proof-nav__item"}
               href={`#${item.target}`}
               key={item.target}
             >
@@ -61,107 +92,112 @@ export default function Home() {
           ))}
         </nav>
 
-        <div className="header-actions">
-          <span className="header-note">EST. 2020</span>
-          <a className="header-cta" href="#signal">
-            <span>Enter</span>
-            <ArrowUpRight size={14} strokeWidth={1.75} />
-          </a>
-        </div>
+        <a className="proof-menu" href="#signal">
+          <span>Open file</span>
+          <ArrowUpRight size={15} strokeWidth={1.7} />
+        </a>
       </header>
 
-      <section className="hero-scene" data-scene id="home" aria-labelledby="hero-title">
-        <div className="hero-meta hero-reveal hero-reveal--1">
-          <span className="micro-label">00 / Private creative signal</span>
-          <span className="micro-label">Ash — India</span>
-        </div>
-
-        <div className="hero-gridline" aria-hidden="true" />
-        <div className="hero-cursor" aria-hidden="true" />
-
-        <div className="hero-copy">
-          <p className="eyebrow hero-reveal hero-reveal--1">The person behind the name</p>
-          <h1 id="hero-title" className="hero-title">
-            <span className="hero-line hero-reveal hero-reveal--2">People know</span>
-            <span className="hero-line hero-reveal hero-reveal--3">the <em>name.</em></span>
-            <span className="hero-line hero-reveal hero-reveal--4">Almost nobody</span>
-            <span className="hero-line hero-reveal hero-reveal--5">knows the person.</span>
-          </h1>
-        </div>
-
-        <aside className="hero-aside hero-reveal hero-reveal--5">
-          <span className="aside-rule" aria-hidden="true" />
-          <p>
-            A personal record of visual experiments, creative systems, and whatever comes next.
+      <section className="proof-hero" id="index" data-scene aria-labelledby="proof-title">
+        <div className="proof-hero__copy">
+          <p className="proof-caption proof-hero__caption motion-clip motion-clip--1">
+            A personal identity, in active revision.
           </p>
-        </aside>
-
-        <a className="hero-prompt hero-reveal hero-reveal--5" href="#record">
-          <span>Open the record</span>
-          <ArrowDownRight size={19} strokeWidth={1.5} />
-        </a>
-
-        <div className="hero-stamp hero-reveal hero-reveal--4" aria-hidden="true">
-          <VibexMark />
-          <span>V</span>
-          <span>I</span>
-          <span>B</span>
-          <span>E</span>
-          <span>X</span>
-        </div>
-
-        <div className="hero-index hero-reveal hero-reveal--5">
-          <span>01</span>
-          <span>Identity / 00</span>
-        </div>
-      </section>
-
-      <section className="editorial-scene scene-record" data-scene id="record" aria-labelledby="record-title">
-        <div className="scene-index">01</div>
-        <div className="scene-line" aria-hidden="true" />
-        <div className="scene-layout">
-          <p className="eyebrow scene-kicker">A foundation, not a résumé</p>
-          <h2 id="record-title" className="scene-title">Everything begins<br />with a <em>signal.</em></h2>
-          <div className="scene-note">
-            <span className="aside-rule" aria-hidden="true" />
-            <p>
-              This is the visual base. The work, stories, and experiments will arrive one considered chapter at a time.
-            </p>
+          <h1 id="proof-title" className="proof-title">
+            <span className="motion-clip motion-clip--2">Not a portfolio.</span>
+            <span className="motion-clip motion-clip--3">A proof of <em>intent.</em></span>
+          </h1>
+          <div className="proof-hero__foot motion-clip motion-clip--4">
+            <p>A first surface for a body of work that is still taking its shape.</p>
+            <a className="quiet-link" href="#statement">
+              <span>Read the statement</span>
+              <ArrowDown size={17} strokeWidth={1.5} />
+            </a>
           </div>
         </div>
-        <div className="number-ghost" aria-hidden="true">01</div>
+
+        <a
+          className="proof-artifact motion-clip motion-clip--2"
+          href="#statement"
+          ref={artifactRef}
+          aria-label="Open the visual statement"
+        >
+          <img
+            src="/manus-storage/vibex-cobalt-proof-sheet_07e6f1c8.png"
+            alt="A cobalt folded proof sheet with a cut-out Vibex star"
+            fetchPriority="high"
+          />
+          <span className="proof-artifact__fold" aria-hidden="true" />
+          <span className="proof-artifact__sticker" aria-hidden="true">
+            <VibexStar />
+            <small>001</small>
+          </span>
+          <span className="proof-artifact__label" aria-hidden="true">Identity fragment / 001</span>
+        </a>
+
+        <div className="proof-hero__edge" aria-hidden="true">
+          <span>Vibex / Issue 00</span>
+          <span>2026</span>
+        </div>
       </section>
 
-      <section className="motion-scene" data-scene id="motion" aria-labelledby="motion-title">
-        <div className="motion-topline">
-          <p className="eyebrow">02 / Motion language</p>
-          <p className="micro-label">Precision in movement</p>
+      <section className="proof-statement" id="statement" data-scene aria-labelledby="statement-title">
+        <div className="section-rule" aria-hidden="true" />
+        <div className="proof-statement__marginal">There is no final version.</div>
+        <div className="proof-statement__body">
+          <p className="proof-caption section-caption">The page is the first object</p>
+          <h2 id="statement-title" className="section-title wipe-reveal">
+            Built for the person I&apos;m becoming, not the version easiest to describe.
+          </h2>
         </div>
-        <h2 id="motion-title" className="motion-title">The page moves<br />only when it has <em>something to say.</em></h2>
-        <div className="slide-strip" aria-label="Visual motion principles">
-          <article className="slide-card slide-card--ink">
-            <span className="slide-number">A</span>
-            <p>Text arrives in measured layers.</p>
-          </article>
-          <article className="slide-card slide-card--paper">
-            <span className="slide-number">B</span>
-            <p>Space holds the attention.</p>
-          </article>
-          <article className="slide-card slide-card--blue">
-            <span className="slide-number">C</span>
-            <p>Cobalt marks what matters.</p>
-          </article>
+        <div className="proof-statement__note">
+          <CornerDownRight size={18} strokeWidth={1.35} />
+          <p>
+            The work, the experiments, and the story can take their time. This establishes the language first.
+          </p>
         </div>
       </section>
 
-      <section className="signal-scene" data-scene id="signal" aria-labelledby="signal-title">
-        <div className="signal-lockup">
-          <VibexMark />
-          <p className="eyebrow">03 / Base signal established</p>
+      <section className="proof-method" id="method" data-scene aria-labelledby="method-title">
+        <div className="proof-method__head">
+          <p className="proof-caption">A working method</p>
+          <span className="method-rule" aria-hidden="true" />
+          <p className="proof-method__aside">Three decisions that hold the page together.</p>
         </div>
-        <h2 id="signal-title">The next instruction<br />sets the <em>direction.</em></h2>
-        <p className="signal-copy">The base is intentionally quiet. Send the next part when you’re ready.</p>
-        <a className="signal-link" href="#home">Back to top <Asterisk size={13} /></a>
+        <div className="proof-method__frame">
+          <h2 id="method-title" className="method-title">Less surface.<br />More <em>signal.</em></h2>
+          <div className="proof-specimens" aria-label="Design principles">
+            <article className="specimen specimen--type">
+              <span className="specimen__symbol">Aa</span>
+              <div>
+                <h3>Type has weight.</h3>
+                <p>It carries the page before decoration does.</p>
+              </div>
+            </article>
+            <article className="specimen specimen--space">
+              <span className="specimen__symbol specimen__symbol--star"><VibexStar /></span>
+              <div>
+                <h3>Space is a material.</h3>
+                <p>It gives an idea enough room to matter.</p>
+              </div>
+            </article>
+            <article className="specimen specimen--motion">
+              <span className="specimen__symbol">→</span>
+              <div>
+                <h3>Movement earns its place.</h3>
+                <p>It points forward when the story changes.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="proof-signal" id="signal" data-scene aria-labelledby="signal-title">
+        <div className="proof-signal__mark"><VibexStar /></div>
+        <p className="proof-caption proof-signal__caption">File stays open.</p>
+        <h2 id="signal-title">A name is only<br />the first <em>layer.</em></h2>
+        <p className="proof-signal__copy">The record is still being made.</p>
+        <a className="proof-return" href="#index">Return to the first page <ArrowUpRight size={15} /></a>
       </section>
     </main>
   );

@@ -6,3 +6,10 @@
 - [x] Remove the previous site implementation and rebuild the visual foundation from a clean shell.
 - [x] Implement the premium-minimal hero, typography system, text animation, slide transitions, and responsive layout.
 - [x] Verify the desktop and mobile visual experience before requesting the next content instruction.
+
+## Auteur-Led Vibex Redesign
+
+- [x] Inspect the supplied Auteur repository and verify whether it can be used as a design skill in this environment.
+- [x] Extract the elements of Auteur’s workflow that can improve visual hierarchy, interaction craft, and originality for Vibex.
+- [x] Document an original Vibex redesign brief based on the applicable workflow rather than copying Auteur’s creative output.
+- [x] Rebuild the website foundation and verify the redesigned desktop and mobile experience.

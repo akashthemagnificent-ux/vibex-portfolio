@@ -73,3 +73,6 @@ The initial viewport is a bone-colored canvas. Top left holds the VIBEX star-mar
 - Cobalt appears as a single deliberate signal within each major viewport, never as a broad decorative fill.
 - Dark material is reserved for one concise editorial negative-space interlude; luminous bone remains the primary canvas.
 - Card-like content must be disrupted by the editorial system: uneven offsets, rule-led alignment, sectional notation, and the Vibex mark language.
+- Cobalt may emphasize the proof artifact, a selected state, one word, or the Vibex mark; it never becomes a full viewport background.
+- Visual assets should read as cropped editorial fragments, printed proof objects, or process material—not glossy product-render spectacle.
+- The four-lobed star always sits at an intentional scale beside the spaced `V I B E X` lockup, and recurs only as an organizing mark.
