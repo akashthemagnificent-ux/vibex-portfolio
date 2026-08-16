@@ -74,3 +74,14 @@ describe("Four-font typography register", () => {
     }
   });
 });
+
+describe("Signal shared left-column boundary", () => {
+  it("keeps the copy column clear of the right visual field at all breakpoints", () => {
+    expect(css).toContain("/* Signal composition lock: copy belongs to the left field, never the luminous field on the right. */");
+    expect(css).toContain("--signal-column-width: min(500px, calc(100% - var(--signal-visual-field) - clamp(72px, 13vw, 190px)))");
+    expect(css).toContain(".proof-signal .signal-copy { width: var(--signal-column-width); max-width: none; }");
+    expect(css).toContain(".proof-signal .signal-copy h2 { width: 100%; max-width: none; }");
+    expect(css).toContain(".proof-signal .signal-copy .proof-signal__copy { width: min(74%, 360px); max-width: none;");
+    expect(css).toContain("--signal-column-width: calc(62vw - 48px);");
+  });
+});

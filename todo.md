@@ -96,3 +96,12 @@
 - [x] Constrain the "The goal is not more edits…" headline inside the signal text column (not overflowing past its right edge) on mobile.
 - [x] Vertically center the headline + "One day…" paragraph within the space between the section top and the contact grid so it feels aligned.
 - [x] Remove the "This is intentionally a partial record…" privacy note from the signal section.
+
+## Signal Shared Left Column Correction
+
+- [x] Rebuild the mobile Signal copy as one fixed left text column whose headline and paragraph both end before the right visual field.
+- [x] Verify the corrected mobile Signal composition against the user’s latest screenshot before delivery.
+
+## Signal Boundary Regression Guard
+
+- [x] Add a deterministic stylesheet regression check for the shared Signal copy column and right-field exclusion boundary.

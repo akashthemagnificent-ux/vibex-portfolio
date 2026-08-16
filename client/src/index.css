@@ -116,6 +116,18 @@ a:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 5px; }
 /* Ash palette: empty-terminal charcoal, faded ticket paper, and an oxidized phosphor signal. */
 html, body { background: var(--paper); color: var(--ink); }
 body { background-image: radial-gradient(circle at 82% 8%, rgb(216 193 154 / 5%), transparent 24rem), radial-gradient(circle at 8% 92%, rgb(155 174 159 / 4%), transparent 28rem); }
+
+/* Signal composition lock: copy belongs to the left field, never the luminous field on the right. */
+.proof-signal { --signal-visual-field: min(30vw, 440px); --signal-column-width: min(500px, calc(100% - var(--signal-visual-field) - clamp(72px, 13vw, 190px))); }
+.proof-signal .signal-copy { width: var(--signal-column-width); max-width: none; }
+.proof-signal .signal-copy h2 { width: 100%; max-width: none; }
+.proof-signal .signal-copy .proof-signal__copy { width: min(74%, 360px); max-width: none; margin: clamp(38px, 6vh, 68px) auto 0; }
+
+@media (max-width: 820px) {
+  .proof-signal { --signal-visual-field: 38vw; --signal-column-width: calc(62vw - 48px); }
+  .proof-signal .signal-copy { width: var(--signal-column-width); max-width: none; }
+  .proof-signal .signal-copy .proof-signal__copy { width: 84%; max-width: none; margin-right: auto; margin-left: auto; }
+}
 a:focus-visible { outline-color: var(--mystery); box-shadow: var(--cyan-glow); }
 .proof-shell { background: var(--paper); }
 .entry-loader { background: var(--paper); }
