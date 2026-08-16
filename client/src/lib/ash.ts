@@ -172,3 +172,32 @@ export const defaultAnswer: QA = {
   answer:
     "Fair question — but that's one I'll keep for myself for now. Some things stay private: my face, my voice, my location. Try one of the questions above; the rest of me is an open book.",
 };
+
+/** Narrated scene tracks for the cinematic self-interview. */
+export type AudioScene = "signal" | "origin" | "becoming" | "builds" | "vision";
+
+export const audioScenes: Record<AudioScene, string> = {
+  signal: "/manus-storage/vibex-00-signal_e58b5e3d.wav",
+  origin: "/manus-storage/vibex-01-origin_a8935a9b.wav",
+  becoming: "/manus-storage/vibex-02-becoming_cbb8ba74.wav",
+  builds: "/manus-storage/vibex-03-builds_8e124afd.wav",
+  vision: "/manus-storage/vibex-04-vision_52d03e2d.wav",
+};
+
+export const questionBank = [
+  { question: "Who is Vibex?", answer: "Vibex is the name people know. Ash is the person behind it — seventeen, on IST time, still learning, still building, and still refusing to make things just because they already exist." },
+  { question: "What made you start?", answer: "An anime edit, Alight Motion, and a lot of failed attempts. I kept trying to reproduce what I saw until I realised the interesting part was not copying it. It was finding a direction only I could take." },
+  { question: "What is Nebula?", answer: "Nebula is my custom language model, trained on publicly available developer data. It is still evolving. I like it because it proves I can take an idea from nothing to something that thinks back." },
+  { question: "What are you building toward?", answer: "Something exceptional. I do not know its final shape yet, and that is exactly why I keep experimenting. I want to build a body of work that keeps growing beyond one medium or one label." },
+] as const;
+
+export const skills = ["Editing", "AI engineering", "Software development", "Web design", "Bots", "3D visuals", "Creative direction"] as const;
+
+export const socialLinks = [
+  { label: "YouTube", value: "@vibe.x.", href: links.youtube },
+  { label: "GitHub", value: "akashthemagnificent-ux", href: links.github },
+  { label: "Email", value: links.email, href: `mailto:${links.email}` },
+  { label: "TikTok", value: "@tf.ash__", href: links.tiktok },
+  { label: "Discord", value: "944637…409", href: links.discord },
+  { label: "Pinterest", value: "pin.it/292aIB7hf", href: links.pinterest },
+] as const;
