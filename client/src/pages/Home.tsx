@@ -5,6 +5,7 @@
  */
 import { ArrowDown, ArrowUpRight, CornerDownRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import BoxLoader from "@/components/ui/box-loader";
 
 const navigation = [
   { label: "Index", target: "index" },
@@ -27,6 +28,32 @@ function VibexStar({ className = "" }: { className?: string }) {
 export default function Home() {
   const artifactRef = useRef<HTMLAnchorElement>(null);
   const [activeScene, setActiveScene] = useState("index");
+  const [entryState, setEntryState] = useState<"loading" | "leaving" | "done">("loading");
+
+  useEffect(() => {
+    const minimumDwellMs = 760;
+    const startedAt = performance.now();
+    let revealTimer: number | undefined;
+
+    const reveal = () => {
+      const remaining = Math.max(0, minimumDwellMs - (performance.now() - startedAt));
+      revealTimer = window.setTimeout(() => setEntryState("leaving"), remaining);
+    };
+
+    if (document.readyState === "complete") reveal();
+    else window.addEventListener("load", reveal, { once: true });
+
+    return () => {
+      window.removeEventListener("load", reveal);
+      if (revealTimer) window.clearTimeout(revealTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (entryState !== "leaving") return;
+    const exitTimer = window.setTimeout(() => setEntryState("done"), 420);
+    return () => window.clearTimeout(exitTimer);
+  }, [entryState]);
 
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-scene]"));
@@ -73,7 +100,12 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="proof-shell">
+    <main className={`proof-shell ${entryState !== "done" ? "is-loading" : ""}`} aria-busy={entryState !== "done"}>
+      {entryState !== "done" ? (
+        <div className={`entry-loader ${entryState === "leaving" ? "is-leaving" : ""}`}>
+          <BoxLoader label="Loading Vibex" />
+        </div>
+      ) : null}
       <header className="proof-header" aria-label="Primary navigation">
         <a className="proof-wordmark" href="#index" aria-label="Vibex home">
           <VibexStar />
