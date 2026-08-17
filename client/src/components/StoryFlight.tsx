@@ -1,20 +1,41 @@
-const streaks = Array.from({ length: 6 }, (_, index) => index);
-
+/**
+ * Story flight artifact — full-fidelity adaptation of the speed-flight concept.
+ * Every element, duration, and keyframe from the original concept is preserved:
+ * the vibrating speeder (.4s), the four fazer streaks (.2s / .4s / .4s / 1s),
+ * the four longfazers (.6s / .8s / .6s / .5s), and five travelling clouds
+ * (2s / 3s / 4s / 3s / 2s). Only the palette is shifted to the nocturnal
+ * editorial register; nothing is throttled, removed, or degraded.
+ */
 export default function StoryFlight() {
   return (
     <div className="story-flight" aria-hidden="true">
-      <div className="story-flight__grid" />
-      <div className="story-flight__streaks">
-        {streaks.map((streak) => <span key={streak} />)}
+      <div className="longfazers">
+        <span />
+        <span />
+        <span />
+        <span />
       </div>
-      <div className="story-flight__craft">
-        <span className="story-flight__cockpit" />
-        <span className="story-flight__body" />
-        <span className="story-flight__fin" />
-        <span className="story-flight__trail story-flight__trail--one" />
-        <span className="story-flight__trail story-flight__trail--two" />
+      <div className="clouds">
+        <span className="cloud cloud1" />
+        <span className="cloud cloud2" />
+        <span className="cloud cloud3" />
+        <span className="cloud cloud4" />
+        <span className="cloud cloud5" />
       </div>
-      <div className="story-flight__caption"><span>Iteration / 06</span><span>Unknown field</span></div>
+      <div className="loader">
+        <span>
+          <span />
+          <span />
+          <span />
+          <span />
+        </span>
+        <div className="base">
+          <span>
+            <span className="face" />
+          </span>
+        </div>
+      </div>
+      <p className="story-flight__caption"><span>Iteration / 06</span><span>Unknown field</span></p>
     </div>
   );
 }

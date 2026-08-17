@@ -2,6 +2,7 @@
 import { ArrowDown, ArrowUpRight, CornerDownRight } from "lucide-react";
 import { Component, lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import Aurora from "@/components/Aurora";
+import ParticleText from "@/components/ParticleText";
 import HeroTypographyScene from "@/components/HeroTypographyScene";
 import StoryFlight from "@/components/StoryFlight";
 import BoxLoader from "@/components/ui/box-loader";
@@ -149,7 +150,7 @@ export default function Home() {
         <div className="proof-aurora" aria-hidden="true"><Aurora colorStops={["#1d241d", "#9bae9f", "#d8c19a"]} amplitude={0.42} blend={0.56} speed={0.18} /></div>
         <div className="proof-hero__copy">
           <p className="proof-caption proof-hero__caption motion-clip motion-clip--1">Ash / Vibex · he/him · 17 · IST</p>
-          <h1 id="proof-title" className="proof-title"><span className="motion-clip motion-clip--2">People know the name.</span><span className="motion-clip motion-clip--3">Almost nobody knows the <em>person.</em></span></h1>
+          <h1 id="proof-title" className="proof-title proof-title--particles" aria-label="People know the name. Almost nobody knows the person."><span className="proof-title--sr">People know the name. Almost nobody knows the person.</span><ParticleText text="People know the name. Almost nobody knows the person." particleSize={2} density={4} color="#e7e2d7" highlightColor="#d8c19a" scatter={180} gatherDuration={1600} stagger={420} pointerRepel={40} repelRadius={120} idleDrift={0.7} trigger="mount" fontSize="clamp(2.9rem, 7.2vw, 6.6rem)" fontWeight={500} fontFamily="'PVC Dynasty', 'Eurostile', sans-serif" glow={true} /></h1>
           <div className="proof-hero__foot motion-clip motion-clip--4"><p>Editing, software, AI systems, and anything that makes room for a new idea.</p><a className="quiet-link" href="#statement"><span>Begin the record</span><ArrowDown size={17} strokeWidth={1.5} /></a></div>
         </div>
         <HeroTypographyScene />

@@ -127,3 +127,10 @@
 - [x] Build and integrate a refined animated flight component beneath the achievement statement using the supplied concept as a starting point.
 - [x] Tune the component for the nocturnal editorial palette, responsive layout, reduced motion, and low-cost animation performance.
 - [x] Add regression coverage and verify the Story composition, TypeScript, tests, and production build.
+
+## Full-Fidelity Animation Upgrade
+
+- [x] Install the original ParticleText component at full fidelity and mount it on the "People know the name.." hero headline.
+- [x] Preserve all ParticleText effects (hover, touch, physics) with no quality degradation, enabled on mobile, recolored only.
+- [x] Rebuild the Story flight component at the original concept's fidelity with all elements and durations intact.
+- [x] Verify full fidelity visually on desktop and mobile, then pass tests, type check, and build.

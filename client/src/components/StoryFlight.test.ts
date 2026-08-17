@@ -14,17 +14,22 @@ describe("Story flight artifact", () => {
   });
 
   it("keeps the original flight language while using only the portfolio palette", () => {
-    expect(component).toContain('className="story-flight__streaks"');
-    expect(component).toContain('className="story-flight__craft"');
-    expect(css).toContain(".story-flight__body");
-    expect(css).toContain(".story-flight__trail");
-    expect(css).toContain("var(--interactive)");
+    expect(component).toContain('className="story-flight"');
+    expect(component).toContain('className="loader"');
+    expect(component).toContain('className="longfazers"');
+    expect(component).toContain('className="clouds"');
+    expect(component).toContain('className="story-flight__caption"');
+    expect(css).toContain(".longfazers span {");
     expect(css).toContain("var(--mystery)");
+    expect(css).toContain("var(--interactive)");
   });
 
   it("uses transform-and-opacity flight motion and disables it for reduced motion", () => {
-    expect(css).toContain("@keyframes storyStreak");
-    expect(css).toContain("@keyframes storyCraft");
-    expect(css).toContain(".story-flight__streaks span, .story-flight__craft { animation: none; }");
+    expect(css).toContain("@keyframes storyFazer");
+    expect(css).toContain("@keyframes storyMoveClouds");
+    expect(css).toContain("@keyframes storyLf");
+    expect(css).toContain("@keyframes storySpeeder");
+    expect(css).toContain(".longfazers span, .cloud { animation: none !important; }");
+    expect(css).toContain(".loader { animation: none !important; transform: translate(0, 0);");
   });
 });
