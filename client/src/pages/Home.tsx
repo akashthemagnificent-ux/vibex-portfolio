@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUpRight, CornerDownRight } from "lucide-react";
 import { Component, lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import Aurora from "@/components/Aurora";
 import HeroTypographyScene from "@/components/HeroTypographyScene";
+import StoryFlight from "@/components/StoryFlight";
 import BoxLoader from "@/components/ui/box-loader";
 
 const FloatingLines = lazy(() => import("@/components/FloatingLines"));
@@ -169,6 +170,7 @@ export default function Home() {
             {storyEntries.map((entry) => <article className="story-entry" key={entry.mark}><p className="story-entry__mark">{entry.mark}</p><div><h3>{entry.title}</h3><p>{entry.text}</p></div></article>)}
           </div>
           <p className="story-closing">I don&apos;t have shiny awards or big names behind me. If learning, growth, improvement, and consistency count as achievements, I&apos;ve earned those back to back.</p>
+          <StoryFlight />
         </div>
       </section>
 

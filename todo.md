@@ -120,3 +120,10 @@
 ## Signal Paragraph Offset Regression Guard
 
 - [x] Add a deterministic regression assertion for the mobile paragraph’s upward-left offset and its protected left-column constraints.
+
+## Story Flight Component
+
+- [x] Move the Story achievement statement upward to create a deliberate visual slot beneath it.
+- [x] Build and integrate a refined animated flight component beneath the achievement statement using the supplied concept as a starting point.
+- [x] Tune the component for the nocturnal editorial palette, responsive layout, reduced motion, and low-cost animation performance.
+- [x] Add regression coverage and verify the Story composition, TypeScript, tests, and production build.
