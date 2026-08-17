@@ -83,5 +83,7 @@ describe("Signal shared left-column boundary", () => {
     expect(css).toContain(".proof-signal .signal-copy h2 { width: 100%; max-width: none; margin-top: 0; }");
     expect(css).toContain(".proof-signal .signal-copy .proof-signal__copy { width: min(74%, 360px); max-width: none;");
     expect(css).toContain("--signal-column-width: calc(62vw - 48px);");
+    expect(css).toContain(".proof-signal .signal-copy .proof-signal__copy { width: 84%; max-width: none; margin-top: 10px; margin-right: auto; margin-left: calc(8% - 10px); }");
+    expect(css).toContain(".signal-contact { grid-template-columns: 1fr; width: calc(100% - 48px); margin: 52px 0 0; }");
   });
 });

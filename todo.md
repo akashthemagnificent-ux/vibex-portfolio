@@ -111,3 +111,12 @@
 - [x] Move the Signal “Nice to meet you.” caption down to sit directly above the headline at the marked position.
 - [x] Pull the Signal “One day…” supporting paragraph upward so it starts immediately beneath the headline, removing the empty visual gap.
 - [x] Verify the refreshed mobile Signal rhythm while preserving the shared left-column boundary.
+
+## Signal Paragraph Recentering
+
+- [x] Shift the mobile “One day…” paragraph slightly upward and left so it visually centers beneath the full Signal headline.
+- [x] Verify the mobile paragraph offset preserves the shared left-column boundary and contact-grid clearance.
+
+## Signal Paragraph Offset Regression Guard
+
+- [x] Add a deterministic regression assertion for the mobile paragraph’s upward-left offset and its protected left-column constraints.

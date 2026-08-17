@@ -128,7 +128,7 @@ body { background-image: radial-gradient(circle at 82% 8%, rgb(216 193 154 / 5%)
   .proof-signal { --signal-visual-field: 38vw; --signal-column-width: calc(62vw - 48px); }
   .proof-signal .signal-copy { width: var(--signal-column-width); max-width: none; }
   .proof-signal .signal-copy .proof-signal__caption { margin-bottom: 12px; }
-  .proof-signal .signal-copy .proof-signal__copy { width: 84%; max-width: none; margin-top: 18px; margin-right: auto; margin-left: auto; }
+  .proof-signal .signal-copy .proof-signal__copy { width: 84%; max-width: none; margin-top: 10px; margin-right: auto; margin-left: calc(8% - 10px); }
 }
 a:focus-visible { outline-color: var(--mystery); box-shadow: var(--cyan-glow); }
 .proof-shell { background: var(--paper); }
