@@ -66,6 +66,8 @@ const ParticleText = ({
   fontWeight = 800,
   fontFamily = 'inherit',
   glow = true,
+  lineHeight = 0.86,
+  initiallySettled = false,
   className = '',
   style
 }) => {
@@ -233,27 +235,39 @@ const ParticleText = ({
       const offCtx = offscreen.getContext('2d', { willReadFrequently: true });
       if (!offCtx) return;
 
-      const content = String(text || ' ');
+      const lines = String(text || ' ').split(/\n+/);
       const maxTextWidth = width * 0.92;
+      const maxTextHeight = height * 0.9;
       offCtx.font = font;
-      let metrics = offCtx.measureText(content);
-      const measuredWidth = Math.max(1, metrics.width);
-      if (measuredWidth > maxTextWidth) {
-        resolvedSize = Math.max(18, resolvedSize * (maxTextWidth / measuredWidth));
+      let metrics = lines.map(line => offCtx.measureText(line));
+      let measuredWidth = Math.max(1, ...metrics.map(metric => metric.width));
+      let boundingLeft = Math.max(0, ...metrics.map(metric => metric.actualBoundingBoxLeft || 0));
+      let boundingRight = Math.max(...metrics.map(metric => metric.actualBoundingBoxRight || metric.width));
+      let ascent = Math.max(...metrics.map(metric => metric.actualBoundingBoxAscent || resolvedSize * 0.78));
+      let descent = Math.max(...metrics.map(metric => metric.actualBoundingBoxDescent || resolvedSize * 0.22));
+      let lineStep = Math.max(1, (ascent + descent) * lineHeight);
+      let measuredHeight = ascent + descent + lineStep * Math.max(0, lines.length - 1);
+      const scale = Math.min(1, maxTextWidth / measuredWidth, maxTextHeight / measuredHeight);
+
+      if (scale < 1) {
+        resolvedSize = Math.max(18, resolvedSize * scale);
         font = `${fontWeight} ${resolvedSize}px ${resolvedFamily}`;
         await waitForFonts(font);
         if (currentBuild !== buildId) return;
         offCtx.font = font;
-        metrics = offCtx.measureText(content);
+        metrics = lines.map(line => offCtx.measureText(line));
+        measuredWidth = Math.max(1, ...metrics.map(metric => metric.width));
+        boundingLeft = Math.max(0, ...metrics.map(metric => metric.actualBoundingBoxLeft || 0));
+        boundingRight = Math.max(...metrics.map(metric => metric.actualBoundingBoxRight || metric.width));
+        ascent = Math.max(...metrics.map(metric => metric.actualBoundingBoxAscent || resolvedSize * 0.78));
+        descent = Math.max(...metrics.map(metric => metric.actualBoundingBoxDescent || resolvedSize * 0.22));
+        lineStep = Math.max(1, (ascent + descent) * lineHeight);
+        measuredHeight = ascent + descent + lineStep * Math.max(0, lines.length - 1);
       }
 
-      const left = Math.ceil(metrics.actualBoundingBoxLeft || 0);
-      const right = Math.ceil(metrics.actualBoundingBoxRight || metrics.width);
-      const ascent = Math.ceil(metrics.actualBoundingBoxAscent || resolvedSize * 0.78);
-      const descent = Math.ceil(metrics.actualBoundingBoxDescent || resolvedSize * 0.22);
       const padding = Math.max(12, Math.ceil(resolvedSize * 0.08));
-      const textWidth = Math.max(1, left + right);
-      const textHeight = Math.max(1, ascent + descent);
+      const textWidth = Math.max(1, Math.ceil(boundingLeft + boundingRight));
+      const textHeight = Math.max(1, Math.ceil(measuredHeight));
 
       offscreen.width = textWidth + padding * 2;
       offscreen.height = textHeight + padding * 2;
@@ -262,7 +276,9 @@ const ParticleText = ({
       offCtx.textAlign = 'left';
       offCtx.textBaseline = 'alphabetic';
       offCtx.fillStyle = '#ffffff';
-      offCtx.fillText(content, padding - left, padding + ascent);
+      lines.forEach((line, index) => {
+        offCtx.fillText(line, padding + boundingLeft, padding + ascent + lineStep * index);
+      });
 
       const imageData = offCtx.getImageData(0, 0, offscreen.width, offscreen.height);
       const targets = [];
@@ -317,7 +333,7 @@ const ParticleText = ({
       pointer.smoothX = pointer.x;
       pointer.smoothY = pointer.y;
 
-      if (reducedMotion) {
+      if (reducedMotion || initiallySettled) {
         particles.forEach(particle => {
           particle.x = particle.targetX;
           particle.y = particle.targetY;
@@ -402,7 +418,9 @@ const ParticleText = ({
     fontSize,
     fontWeight,
     fontFamily,
-    glow
+    glow,
+    lineHeight,
+    initiallySettled
   ]);
 
   return (

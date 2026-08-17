@@ -16,6 +16,8 @@ declare module "@/components/ParticleText" {
     fontWeight?: number | string;
     fontFamily?: string;
     glow?: boolean;
+    lineHeight?: number;
+    initiallySettled?: boolean;
     className?: string;
     style?: React.CSSProperties;
   }) => JSX.Element;

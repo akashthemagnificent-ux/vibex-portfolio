@@ -134,3 +134,9 @@
 - [x] Preserve all ParticleText effects (hover, touch, physics) with no quality degradation, enabled on mobile, recolored only.
 - [x] Rebuild the Story flight component at the original concept's fidelity with all elements and durations intact.
 - [x] Verify full fidelity visually on desktop and mobile, then pass tests, type check, and build.
+
+## ParticleText Hero Legibility Restoration
+
+- [x] Restore the ParticleText canvas to a large, readable multiline treatment that matches the original hero headline scale.
+- [x] Preserve the unmodified full-quality particle interactions, including hover and touch, across desktop and mobile.
+- [x] Verify the corrected headline’s visual hierarchy, legibility, tests, type check, and production build.
