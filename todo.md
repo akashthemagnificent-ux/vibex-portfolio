@@ -140,3 +140,10 @@
 - [x] Restore the ParticleText canvas to a large, readable multiline treatment that matches the original hero headline scale.
 - [x] Preserve the unmodified full-quality particle interactions, including hover and touch, across desktop and mobile.
 - [x] Verify the corrected headline’s visual hierarchy, legibility, tests, type check, and production build.
+
+## ParticleText Bold Hero Refinement
+
+- [x] Replace the thin ParticleText sampling face with a bold, immediately readable hero typeface while keeping the four-line headline composition.
+- [x] Retain every full-fidelity particle behavior, including hover and touch physics, at the new bold sampling weight.
+- [x] Verify the bold ParticleText headline for instant desktop/mobile readability and pass the full validation suite.
+- [x] Record an explicit final visual review confirming first-glance readability at desktop and mobile hero sizes (documented in `visual-review.md`).

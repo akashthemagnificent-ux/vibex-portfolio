@@ -11,7 +11,12 @@ describe("ParticleText hero legibility", () => {
   it("keeps the original four-line hero copy at a large editorial scale", () => {
     expect(home).toContain("People know\\nthe name.\\nAlmost nobody\\nknows the person.");
     expect(home).toContain('fontSize="clamp(3.1rem, 13.5vw, 6.6rem)"');
-    expect(home).toContain("lineHeight={0.86}");
+    expect(home).toContain("fontWeight={700}");
+    expect(home).toContain("fontFamily=\"'Satoshi', system-ui, sans-serif\"");
+    expect(home).toContain('color="#f2ebdd"');
+    expect(home).toContain("particleSize={2.8}");
+    expect(home).toContain("density={2}");
+    expect(home).toContain("lineHeight={0.92}");
   });
 
   it("begins legibly settled while retaining the full pointer interaction physics", () => {
@@ -19,5 +24,6 @@ describe("ParticleText hero legibility", () => {
     expect(particleText).toContain("if (reducedMotion || initiallySettled)");
     expect(particleText).toContain("canvas.addEventListener('pointermove', handlePointerMove)");
     expect(particleText).toContain("pointerRepel > 0 && repelRadius > 0");
+    expect(particleText).toContain("Math.min(12000, Math.floor((width * height) / 42))");
   });
 });
