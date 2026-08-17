@@ -2,6 +2,7 @@
 import { ArrowDown, ArrowUpRight, CornerDownRight } from "lucide-react";
 import { Component, lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import Aurora from "@/components/Aurora";
+import MoltenMetal from "@/components/MoltenMetal";
 import ParticleText from "@/components/ParticleText";
 import HeroTypographyScene from "@/components/HeroTypographyScene";
 import StoryFlight from "@/components/StoryFlight";
@@ -147,6 +148,7 @@ export default function Home() {
       </header>
 
       <section className="proof-hero" id="index" data-scene aria-labelledby="proof-title">
+        <div className="proof-molten-metal" aria-hidden="true"><AmbientWebGLBoundary><MoltenMetal color1="#1c211c" color2="#4d5a4d" color3="#d8c19a" speed={0.16} scale={3.6} detail={8} glow={1.45} coreSize={0.09} swirl={0.82} fold={-0.22} blackPoint={0.12} brightness={0.9} colorMode="frost" grain={true} grainIntensity={0.035} mouseInteraction={true} mouseStrength={0.14} opacity={0.82} /></AmbientWebGLBoundary></div>
         <div className="proof-aurora" aria-hidden="true"><Aurora colorStops={["#1d241d", "#9bae9f", "#d8c19a"]} amplitude={0.42} blend={0.56} speed={0.18} /></div>
         <div className="proof-hero__copy">
           <p className="proof-caption proof-hero__caption motion-clip motion-clip--1">Ash / Vibex · he/him · 17 · IST</p>

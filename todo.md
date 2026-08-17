@@ -147,3 +147,11 @@
 - [x] Retain every full-fidelity particle behavior, including hover and touch physics, at the new bold sampling weight.
 - [x] Verify the bold ParticleText headline for instant desktop/mobile readability and pass the full validation suite.
 - [x] Record an explicit final visual review confirming first-glance readability at desktop and mobile hero sizes (documented in `visual-review.md`).
+
+## Molten Metal Hero Background
+
+- [x] Add the requested full-quality Molten Metal JS/CSS component to the first-page hero.
+- [x] Recolor and layer the effect for the nocturnal liminal palette while preserving the clear hero field and existing atmospheric layers.
+- [x] Protect immediate readability of the particle headline, caption, navigation, and supporting copy at desktop and mobile sizes.
+- [x] Add regression coverage and verify visuals, tests, type check, and production build.
+- [x] Record a final desktop and mobile visual review of hero text readability over the Molten Metal background (documented in `visual-review.md`).
