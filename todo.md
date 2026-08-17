@@ -105,3 +105,9 @@
 ## Signal Boundary Regression Guard
 
 - [x] Add a deterministic stylesheet regression check for the shared Signal copy column and right-field exclusion boundary.
+
+## Signal Vertical Rhythm Refresh
+
+- [x] Move the Signal “Nice to meet you.” caption down to sit directly above the headline at the marked position.
+- [x] Pull the Signal “One day…” supporting paragraph upward so it starts immediately beneath the headline, removing the empty visual gap.
+- [x] Verify the refreshed mobile Signal rhythm while preserving the shared left-column boundary.
