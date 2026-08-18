@@ -8,14 +8,17 @@ const home = readFileSync(resolve(componentsDir, "..", "pages", "Home.tsx"), "ut
 const moltenMetal = readFileSync(resolve(componentsDir, "MoltenMetal.jsx"), "utf-8");
 const styles = readFileSync(resolve(componentsDir, "..", "index.css"), "utf-8");
 
-describe("Molten Metal hero background", () => {
-  it("mounts the full-quality shader behind the first-page hero", () => {
+describe("Molten Metal page background", () => {
+  it("mounts the full-quality shader as a global layer behind all page content", () => {
     expect(home).toContain('import MoltenMetal from "@/components/MoltenMetal"');
     expect(home).toContain('className="proof-molten-metal"');
+    expect(home.indexOf('<div className="proof-molten-metal"')).toBeLessThan(home.indexOf("<header"));
     expect(home).toContain('detail={8}');
     expect(home).toContain('mouseInteraction={true}');
-    expect(home).toContain('color1="#1c211c"');
-    expect(home).toContain('color3="#d8c19a"');
+    expect(home).toContain('color1="#17221d"');
+    expect(home).toContain('color3="#f4d79f"');
+    expect(home).toContain('glow={3.4}');
+    expect(home).toContain('blackPoint={0}');
   });
 
   it("keeps the original interactive WebGL animation machinery intact", () => {
@@ -25,9 +28,12 @@ describe("Molten Metal hero background", () => {
     expect(moltenMetal).toContain("const io = new IntersectionObserver");
   });
 
-  it("uses a dedicated exposure veil so hero copy stays visually distinct", () => {
+  it("uses a light global veil and readable local content surfaces instead of hiding the shader", () => {
     expect(styles).toContain(".proof-molten-metal");
-    expect(styles).toContain("rgb(20 23 20 / 88%)");
+    expect(styles).toContain("position: fixed");
+    expect(styles).toContain("rgb(10 14 12 / 16%)");
+    expect(styles).toContain(".proof-statement { position: relative; z-index: 1");
+    expect(styles).not.toContain("rgb(20 23 20 / 88%)");
     expect(styles).toContain("pointer-events: none");
   });
 });
