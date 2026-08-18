@@ -162,3 +162,10 @@
 - [x] Increase only the component’s visible material presence through nocturnal palette colors and shader controls.
 - [x] Verify hero text contrast and confirm the existing lower-page theme remains unchanged at desktop and mobile sizes.
 - [x] Update regression coverage, run validation, and save a checkpoint for the scoped correction.
+
+## GitHub Repository Export
+
+- [ ] Confirm the connected GitHub account and repository visibility/name before creation.
+- [ ] Prepare the complete runnable portfolio source, configuration, and documentation for export.
+- [ ] Create a new GitHub repository under the user’s account and push all required files.
+- [ ] Verify the repository contents and provide the repository link.
