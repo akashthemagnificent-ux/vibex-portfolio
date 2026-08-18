@@ -40,8 +40,8 @@ pnpm start
 | `client/src/**/*.test.ts` | Regression tests for content, typography, and visual integration contracts |
 | `server/index.ts` | Production server entry point |
 
-## Notes
+## Font assets and notes
 
-The original self-hosted font URLs target the existing Manus storage paths used by this project. Replace those URLs with your own hosted font files before deploying outside that environment if you do not intend to retain the same asset host.
+The exact webfont files used by the interface are bundled in [`assets/fonts`](./assets/fonts) and loaded through GitHub’s raw-content host, so a clone of this repository does not depend on Manus storage. Retain the applicable font licenses when redistributing or modifying the project.
 
 The repository intentionally excludes dependency folders, build output, logs, local configuration, and environment files. See `.gitignore` for the complete list.

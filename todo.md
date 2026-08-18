@@ -165,7 +165,9 @@
 
 ## GitHub Repository Export
 
-- [ ] Confirm the connected GitHub account and repository visibility/name before creation.
-- [ ] Prepare the complete runnable portfolio source, configuration, and documentation for export.
-- [ ] Create a new GitHub repository under the user’s account and push all required files.
-- [ ] Verify the repository contents and provide the repository link.
+- [x] Confirm the connected GitHub account and repository visibility/name before creation.
+- [x] Prepare the complete runnable portfolio source, configuration, and documentation for export.
+- [x] Create a new GitHub repository under the user’s account and push all required files.
+- [x] Verify the repository contents and provide the repository link.
+- [ ] Bundle the required self-hosted font assets with the repository and replace Manus-only asset URLs with reproducible local references.
+- [ ] Re-verify the runnable public repository, push the final self-contained export, and provide its link.
