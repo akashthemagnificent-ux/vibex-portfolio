@@ -155,3 +155,10 @@
 - [x] Protect immediate readability of the particle headline, caption, navigation, and supporting copy at desktop and mobile sizes.
 - [x] Add regression coverage and verify visuals, tests, type check, and production build.
 - [x] Record a final desktop and mobile visual review of hero text readability over the Molten Metal background (documented in `visual-review.md`).
+
+## Corrected Hero-Only Molten Metal Visibility
+
+- [x] Keep Molten Metal confined to the first-page hero and leave all other section styling and global theme untouched.
+- [x] Increase only the component’s visible material presence through nocturnal palette colors and shader controls.
+- [x] Verify hero text contrast and confirm the existing lower-page theme remains unchanged at desktop and mobile sizes.
+- [x] Update regression coverage, run validation, and save a checkpoint for the scoped correction.

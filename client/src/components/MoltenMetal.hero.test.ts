@@ -14,8 +14,9 @@ describe("Molten Metal hero background", () => {
     expect(home).toContain('className="proof-molten-metal"');
     expect(home).toContain('detail={8}');
     expect(home).toContain('mouseInteraction={true}');
-    expect(home).toContain('color1="#1c211c"');
-    expect(home).toContain('color3="#d8c19a"');
+    expect(home).toContain('color1="#2a3027"');
+    expect(home).toContain('color2="#9a885f"');
+    expect(home).toContain('color3="#f3d4a3"');
   });
 
   it("keeps the original interactive WebGL animation machinery intact", () => {
