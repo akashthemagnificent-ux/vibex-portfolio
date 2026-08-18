@@ -1,1 +1,0 @@
-The webfont files in this directory were supplied by the portfolio owner for the Vibex portfolio source. Retain the applicable font licenses when redistributing or modifying the project.

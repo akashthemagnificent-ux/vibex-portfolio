@@ -14,13 +14,13 @@
  * PVC Dynasty  → editorial statements (large titles, section headlines)
  * Satoshi      → reading & interface (body, captions, cards, controls)
  */
-@font-face { font-family: "Rosnoc"; src: url("https://raw.githubusercontent.com/akashthemagnificent-ux/vibex-portfolio/main/assets/fonts/Rosnoc-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Eurostile"; src: url("https://raw.githubusercontent.com/akashthemagnificent-ux/vibex-portfolio/main/assets/fonts/Eurostile-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "PVC Dynasty"; src: url("https://raw.githubusercontent.com/akashthemagnificent-ux/vibex-portfolio/main/assets/fonts/PVCDynasty-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Satoshi"; src: url("https://raw.githubusercontent.com/akashthemagnificent-ux/vibex-portfolio/main/assets/fonts/Satoshi-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Satoshi"; src: url("https://raw.githubusercontent.com/akashthemagnificent-ux/vibex-portfolio/main/assets/fonts/Satoshi-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
-@font-face { font-family: "Satoshi"; src: url("https://raw.githubusercontent.com/akashthemagnificent-ux/vibex-portfolio/main/assets/fonts/Satoshi-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
-@font-face { font-family: "Satoshi"; src: url("https://raw.githubusercontent.com/akashthemagnificent-ux/vibex-portfolio/main/assets/fonts/Satoshi-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Rosnoc"; src: url("/fonts/Rosnoc-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Eurostile"; src: url("/fonts/Eurostile-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "PVC Dynasty"; src: url("/fonts/PVCDynasty-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("/fonts/Satoshi-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("/fonts/Satoshi-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("/fonts/Satoshi-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("/fonts/Satoshi-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
 
 @theme inline {
   --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;

@@ -42,6 +42,6 @@ pnpm start
 
 ## Font assets and notes
 
-The exact webfont files used by the interface are bundled in [`assets/fonts`](./assets/fonts) and loaded through GitHub’s raw-content host, so a clone of this repository does not depend on Manus storage. Retain the applicable font licenses when redistributing or modifying the project.
+The exact webfont files used by the interface are bundled in [`client/public/fonts`](./client/public/fonts) and served through local `/fonts/...` application paths, so a clone of this repository does not depend on Manus storage or another asset host. Retain the applicable font licenses when redistributing or modifying the project.
 
 The repository intentionally excludes dependency folders, build output, logs, local configuration, and environment files. See `.gitignore` for the complete list.

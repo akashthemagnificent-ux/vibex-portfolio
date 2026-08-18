@@ -169,5 +169,7 @@
 - [x] Prepare the complete runnable portfolio source, configuration, and documentation for export.
 - [x] Create a new GitHub repository under the user’s account and push all required files.
 - [x] Verify the repository contents and provide the repository link.
-- [ ] Bundle the required self-hosted font assets with the repository and replace Manus-only asset URLs with reproducible local references.
-- [ ] Re-verify the runnable public repository, push the final self-contained export, and provide its link.
+- [x] Bundle the required self-hosted font assets with the repository and replace Manus-only asset URLs with reproducible local references.
+- [x] Re-verify the runnable public repository, push the final self-contained export, and provide its link.
+- [ ] Serve the committed font assets through repository-local application paths instead of absolute raw GitHub URLs.
+- [ ] Re-run validation, push the local-font export, verify the public repository, and deliver its link.

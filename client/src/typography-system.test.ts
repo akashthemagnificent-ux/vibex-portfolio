@@ -35,7 +35,7 @@ describe("Four-font typography register", () => {
       expect(allowedFamilies).toContain(family);
       const srcMatch = face.match(/src:\s*url\("([^"]+)"\)/);
       expect(srcMatch).toBeTruthy();
-      expect(srcMatch![1]).toMatch(/https:\/\/raw\.githubusercontent\.com\/akashthemagnificent-ux\/vibex-portfolio\/main\/assets\/fonts\/.*\.woff2$/);
+      expect(srcMatch![1]).toMatch(/^\/fonts\/.*\.woff2$/);
     }
   });
 
