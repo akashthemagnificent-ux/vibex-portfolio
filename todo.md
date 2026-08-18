@@ -171,5 +171,5 @@
 - [x] Verify the repository contents and provide the repository link.
 - [x] Bundle the required self-hosted font assets with the repository and replace Manus-only asset URLs with reproducible local references.
 - [x] Re-verify the runnable public repository, push the final self-contained export, and provide its link.
-- [ ] Serve the committed font assets through repository-local application paths instead of absolute raw GitHub URLs.
-- [ ] Re-run validation, push the local-font export, verify the public repository, and deliver its link.
+- [x] Serve the committed font assets through repository-local application paths instead of absolute raw GitHub URLs.
+- [x] Re-run validation, push the local-font export, verify the public repository, and deliver its link.
